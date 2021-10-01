@@ -6,6 +6,7 @@ import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.server.BroadcastMessageEvent;
 
 public class ChatListener implements Listener {
     @EventHandler
@@ -26,7 +27,7 @@ public class ChatListener implements Listener {
     }
 
     @EventHandler
-    public void onNothingChat(AsyncChatEvent event) {
+    public void onNothingChat(BroadcastMessageEvent event) {
         TextComponent component = (TextComponent) event.message();
 
         if (component.toString().equals("")) event.setCancelled(true);
