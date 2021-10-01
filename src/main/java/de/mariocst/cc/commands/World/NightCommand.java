@@ -1,0 +1,30 @@
+package de.mariocst.cc.commands.World;
+
+import de.mariocst.cc.CCPlugin;
+import org.bukkit.Sound;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class NightCommand implements CommandExecutor {
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        if(!(sender instanceof Player)) {
+            CCPlugin.getInstance().log("Dieser Command kann leider nur InGame ausgeführt werden!");
+            return true;
+        }
+
+        Player player = (Player) sender;
+
+        if(player.hasPermission("mario.night") || player.hasPermission("*") || player.isOp()) {
+            player.getWorld().setTime(16000);
+            player.sendMessage(CCPlugin.getPrefix() + "Die Zeit wurde auf Nacht gestellt!");
+        } else {
+            player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+        }
+        return true;
+    }
+}

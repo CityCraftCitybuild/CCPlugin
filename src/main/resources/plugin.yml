@@ -1,0 +1,381 @@
+name: CCPlugin
+version: 1.0
+main: de.mariocst.cc.CCPlugin
+api-version: 1.16
+authors: [marioCST]
+description: CityCraft Plugin für 1.17.1
+
+commands:
+  heal:
+    description: Heilt dich!
+    aliases: ["healme", "h"]
+    permission: mario.heal
+  die:
+    description: Lässt dich sterben.
+    aliases: ["dead"]
+    permission: mario.die
+  broadcast:
+    description: ADMIN Schreibt die Nachricht nach dem Befehl in den Chat!
+    aliases: ["bc"]
+    permission: mario.broadcast
+  discord:
+    description: Link zum definierten Discord.
+    aliases: ["dc"]
+    permission: mario.discord
+  setlink:
+    description: Setzt den Link für /discord
+    aliases: ["sl"]
+    permission: mario.setlink
+  fly:
+    description: Fly Command
+    permission: mario.fly
+  chatclear:
+    description: Cleart den Chat
+    aliases: ["cc"]
+    permission: mario.chatclear
+  clearinventory:
+    description: Cleart dein Inventar
+    aliases: ["clearinv", "cleari", "ci"]
+    permission: mario.clear
+  gm:
+    description: Ist wie /gamemode nur in kurz
+    permission: mario.gm
+  day:
+    description: Macht Tag
+    permission: mario.day
+  night:
+    description: Macht Nacht
+    permission: mario.night
+  speed:
+    description: Gibt dir Speed
+    permission: mario.speed
+  backpack:
+    description: Öffnet ein personalisiertes Backpack!
+    aliases: ["bp"]
+    permission: mario.backpack
+  enderchest:
+    description: Öffnet die persönliche Enderchest!
+    aliases: ["ec"]
+    permission: mario.ec
+  invsee:
+    description: Öffnet das Inventar eines anderen Spielers!
+    aliases: ["isee"]
+    permission: mario.invsee
+  enderinvsee:
+    description: Öffnet die Enderchest eines anderen Spielers!
+    aliases: ["esee"]
+    permission: mario.enderinvsee
+  kickall:
+    description: Kickt alle Spieler, die Online sind, außer den Commandsender!
+    aliases: ["ka"]
+    permission: mario.kickall
+  banall:
+    description: Bannt alle Spieler, die Online sind, außer der Commandsender!
+    aliases: [ "ba" ]
+    permission: mario.banall
+  backpacklarge:
+    description: Öffnet ein personalisiertes Backpack mit der Größe einer Doppelkiste!
+    aliases: [ "bpl" ]
+    permission: mario.backpacklarge
+  sendactionbar:
+    description: Sende eine "ActionBar" mit einer beliebigen Nachricht an einen Spieler!
+    aliases: [ "sab" ]
+    permission: mario.sendactionbar
+  sendmessage:
+    description: Sende eine Nachricht an einen Spieler!
+    aliases: [ "sm" ]
+    permission: mario.sendmessage
+  sendtitle:
+    description: Sende einen Titel mit einer beliebigen Nachricht an einen Spieler!
+    aliases: [ "st" ]
+    permission: mario.sendtitle
+  clearenderchest:
+    description: Cleart deine Ender Chest
+    aliases: [ "clearec", "cec" ]
+    permission: mario.clearenderchest
+  backpackstored:
+    description: Siehe in ein gelagertes Backpack eines Spielers!
+    aliases: [ "bps" ]
+    permission: mario.backpackstored
+  restoreinventory:
+    description: Gebe einen Spieler das gelagerte Inventar zurück! BETA
+    aliases: [ "riv", "reinv", "rinv" ]
+    permission: mario.restoreinventory
+  storeinventory:
+    description: Lager das Inventar eines Spielers! BETA
+    aliases: [ "siv", "stinv", "sinv" ]
+    permission: mario.storeinventory
+  troll:
+    description: Trolle jemandem mit einem Explosions Paket haha
+    permission: mario.troll
+  forceloadchunk:
+    description: Lasse einen Chunk immer geladen sein! Oder auch nicht.
+    aliases: [ "flc" ]
+    permission: mario.forceloadchunk
+  setprefix:
+    description: Ändere den Prefix dieses Plugins!
+    aliases: [ "sp" ]
+    permission: mario.setprefix
+  config:
+    description: Speichere oder lade alle Configs neu!
+    aliases: [ "c" ]
+    permission: mario.config
+  getentities:
+    description: Welche Entities sind in meiner Welt? (Chat wird zugespammt)
+    aliases: [ "ge" ]
+    permission: mario.getentities
+  killradius:
+    description: Töte alle Mobs in einem bestimmten Radius
+    aliases: [ "kr" ]
+    permission: mario.killradius
+  lobby:
+    description: Teleportiere dich in die Lobby!
+    aliases: [ "l" ]
+    permission: mario.lobby
+  web:
+    description: Bekomme den Link zu unserer Website!
+    aliases: [ "weblink", "wl" ]
+    permission: mario.web
+  colorcodes:
+    description: Alle Color Codes in einer Liste!
+    aliases: [ "ccodes", "colorc" ]
+    permission: mario.colorcodes
+  ffainventory:
+    description: Öffne das Inventar eines Spielers, während er im FFA ist!
+    aliases: [ "ffai" ]
+    permission: mario.ffainventory
+  ffaarmor:
+    description: Bekomme deine Rüstung zurück!
+    aliases: [ "ffaa" ]
+    permission: mario.ffaarmor
+  report:
+    description: Reporte eine Spieler!
+    permission: mario.report
+  staffchat:
+    description: Ein Chat für Teammitglieder!
+    aliases: [ "sc", "teamchat", "tc" ]
+    permission: mario.staff
+  godmode:
+    description: Werde unbesiegbar!
+    aliases: [ "gmode", "godm" ]
+    permission: mario.godmode
+  navigator:
+    description: Öffnet eine GUI, um sich zu einer Welt zu teleportieren!
+    aliases: [ "nav" ]
+    permission: mario.nav
+  feed:
+    description: Sättigt dich!
+    aliases: [ "feedme" ]
+    permission: mario.feed
+  unbreakable:
+    description: Macht das Item in deiner Hand unzerstörbar/zerstörbar!
+    aliases: [ "unbreak" ]
+    permission: mario.unbreakable
+  weed:
+    description: Du rauchst!
+    permission: mario.weed
+  sudo:
+    description: Führe Commands als ein anderer Spieler aus!
+    permission: mario.sudo
+
+permissions:
+  mario.*:
+    description: Alle Rechte zu diesem Plugin!
+    default: op
+    children:
+      mario.reload: true
+      mario.die: true
+      mario.broadcast: true
+      mario.discord: true
+      mario.setlink: true
+      mario.fly: true
+      mario.chatclear: true
+      mario.clear: true
+      mario.gm: true
+      mario.day: true
+      mario.night: true
+      mario.speed: true
+      mario.backpack: true
+      mario.ec: true
+      mario.invsee: true
+      mario.enderinvsee: true
+      mario.kickall: true
+      mario.banall: true
+      mario.backpacklarge: true
+      mario.sendactionbar: true
+      mario.sendmessage: true
+      mario.sendtitle: true
+      mario.clearenderchest: true
+      mario.backpackstored: true
+      mario.restoreinventory: true
+      mario.storeinventory: true
+      mario.troll: true
+      mario.forceloadchunk: true
+      mario.setprefix: true
+      mario.config: true
+      mario.getentities: true
+      mario.killradius: true
+      mario.lobby: true
+      mario.web: true
+      mario.colorcodes: true
+      mario.ffainventory: true
+      mario.ffaarmor: true
+      mario.report: true
+      mario.staff: true
+      mario.godmode: true
+      mario.nav: true
+      mario.feed: true
+      mario.unbreakable: true
+      mario.weed: true
+      mario.sudo: true
+  mario.heal:
+    description: Rechte für den /heal Command!
+    default: op
+    children:
+      mario.heal.other:
+        description: Rechte, um andere zu heilen!
+        default: op
+  mario.die:
+    description: Rechte für den /die Command!
+    default: op
+  mario.broadcast:
+    description: Rechte für den /broadcast Command!
+    default: op
+  mario.discord:
+    description: Rechte für den /discord Command!
+    default: op
+  mario.setlink:
+    description: Rechte für den /setlink Command!
+    default: op
+  mario.fly:
+    description: Rechte für den /fly Command!
+    default: op
+    children:
+      mario.fly.bypass:
+        description: Fliege in jeder Welt, auch wenn sie nicht in der Config als erlaubt eingetragen ist!
+        default: op
+  mario.chatclear:
+    description: Rechte für den /chatclear Command!
+    default: op
+  mario.clear:
+    description: Rechte für den /clearinventory Command!
+    default: op
+  mario.gm:
+    description: Rechte für den /gm Command!
+    default: op
+  mario.day:
+    description: Rechte für den /day Command!
+    default: op
+  mario.night:
+    description: Rechte für den /night Command!
+    default: op
+  mario.speed:
+    description: Rechte für den /speed Command!
+    default: op
+  mario.backpack:
+    description: Rechte für den /backpack Command!
+    default: op
+  mario.ec:
+    description: Rechte für den /enderchest Command!
+    default: op
+  mario.invsee:
+    description: Rechte für den /invsee Command!
+    default: op
+  mario.enderinvsee:
+    description: Rechte für den /enderinvsee Command!
+    default: op
+  mario.kickall:
+    description: Rechte für den /kickall Command!
+    default: op
+  mario.banall:
+    description: Rechte für den /banall Command!
+    default: op
+  mario.backpacklarge:
+    description: Rechte für den /backpacklarge Command!
+    default: op
+  mario.sendactionbar:
+    description: Rechte für den /sendactionbar Command!
+    default: op
+  mario.sendmessage:
+    description: Rechte für den /sendmessage Command!
+    default: op
+  mario.sendtitle:
+    description: Rechte für den /sendtitle Command!
+    default: op
+  mario.clearenderchest:
+    description: Rechte für den /clearenderchest Command!
+    default: op
+  mario.backpackstored:
+    description: Rechte für den /backpackstored Command!
+    default: op
+  mario.restoreinventory:
+    description: Rechte für den /restoreinventory Command!
+    default: op
+  mario.storeinventory:
+    description: Rechte für den /storeinventory Command!
+    default: op
+  mario.troll:
+    description: Rechte für den /troll Command!
+    default: op
+  mario.forceloadchunk:
+    description: Rechte für den /forceloadchunk Command!
+    default: op
+  mario.setprefix:
+    description: Rechte für den /setprefix Command!
+    default: op
+  mario.config:
+    description: Rechte für den /config Command!
+    default: op
+  mario.getentities:
+    description: Rechte für den /getentities Command!
+    default: op
+  mario.killradius:
+    description: Rechte für den /killradius Command!
+    default: op
+  mario.lobby:
+    description: Rechte für den /lobby Command!
+    default: op
+  mario.web:
+    description: Rechte für den /web Command!
+    default: op
+  mario.colorcodes:
+    description: Rechte für den /colorcodes Command!
+    default: op
+  mario.ffainventory:
+    description: Rechte für den /ffainventory Command!
+    default: op
+  mario.ffaarmor:
+    description: Rechte für den /ffaarmor Command!
+    default: op
+  mario.report:
+    description: Rechte für den /report Command!
+    default: op
+  mario.staff:
+    description: Rechte für den /staffchat Command!
+    default: op
+  mario.godmode:
+    description: Rechte für den /godmode Command!
+    default: op
+  mario.nav:
+    description: Rechte für den /navigator Command!
+    default: op
+  mario.feed:
+    description: Rechte für den /feed Command!
+    default: op
+    children:
+      mario.feed.other:
+        description: Sättige andere Spieler!
+        default: op
+  mario.unbreakable:
+    description: Rechte für den /unbreakable Command!
+    default: op
+  mario.weed:
+    description: Rechte für den /weed Command!
+    default: op
+  mario.sudo:
+    description: Rechte für den /sudo Command!
+    default: op
+    children:
+      mario.sudo.bypass:
+        description: Werde nicht von Sudo kontrolliert!
+        default: op
