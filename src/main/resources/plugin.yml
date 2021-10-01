@@ -1,7 +1,7 @@
 name: CCPlugin
 version: 1.0
 main: de.mariocst.cc.CCPlugin
-api-version: 1.16
+api-version: 1.17
 authors: [marioCST]
 description: CityCraft Plugin für 1.17.1
 
