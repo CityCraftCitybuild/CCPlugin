@@ -209,68 +209,74 @@ public final class CCPlugin extends JavaPlugin {
 
     private void register() {
         //Chat
-        getCommand("broadcast").setExecutor(new BroadcastCommand());
-        getCommand("chatclear").setExecutor(new ChatClearCommand());
-        getCommand("colorcodes").setExecutor(new ColorCodesCommand());
+        Objects.requireNonNull(getCommand("broadcast")).setExecutor(new BroadcastCommand());
+        Objects.requireNonNull(getCommand("chatclear")).setExecutor(new ChatClearCommand());
+        Objects.requireNonNull(getCommand("colorcodes")).setExecutor(new ColorCodesCommand());
 
         //Inventory
-        getCommand("backpack").setExecutor(new BackpackCommand());
-        getCommand("backpacklarge").setExecutor(new BackpackLargeCommand());
-        getCommand("clearenderchest").setExecutor(new ClearEnderChestCommand());
-        getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
-        getCommand("unbreakable").setExecutor(new UnbreakableCommand());
+        Objects.requireNonNull(getCommand("backpack")).setExecutor(new BackpackCommand());
+        Objects.requireNonNull(getCommand("backpacklarge")).setExecutor(new BackpackLargeCommand());
+        Objects.requireNonNull(getCommand("clearenderchest")).setExecutor(new ClearEnderChestCommand());
+        Objects.requireNonNull(getCommand("clearinventory")).setExecutor(new ClearInventoryCommand());
+        Objects.requireNonNull(getCommand("unbreakable")).setExecutor(new UnbreakableCommand());
 
         //Invsee
-        getCommand("enderinvsee").setExecutor(new EnderInvseeCommand());
-        getCommand("invsee").setExecutor(new InvseeCommand());
+        Objects.requireNonNull(getCommand("enderinvsee")).setExecutor(new EnderInvseeCommand());
+        Objects.requireNonNull(getCommand("invsee")).setExecutor(new InvseeCommand());
 
         //Others
-        getCommand("discord").setExecutor(new DiscordCommand());
-        getCommand("enderchest").setExecutor(new ECCommand());
-        getCommand("troll").setExecutor(new TrollCommand());
-        getCommand("web").setExecutor(new WebCommand());
+        Objects.requireNonNull(getCommand("discord")).setExecutor(new DiscordCommand());
+        Objects.requireNonNull(getCommand("enderchest")).setExecutor(new ECCommand());
+        Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
+        Objects.requireNonNull(getCommand("web")).setExecutor(new WebCommand());
 
         //Player
-        getCommand("die").setExecutor(new DieCommand());
-        getCommand("feed").setExecutor(new FeedCommand());
-        getCommand("fly").setExecutor(new FlyCommand());
-        getCommand("gm").setExecutor(new GMCommand());
-        getCommand("godmode").setExecutor(new GodmodeCommand());
-        getCommand("heal").setExecutor(new HealCommand());
-        getCommand("speed").setExecutor(new SpeedCommand());
-        getCommand("sudo").setExecutor(new SudoCommand());
-        getCommand("weed").setExecutor(new WeedCommand());
+        Objects.requireNonNull(getCommand("die")).setExecutor(new DieCommand());
+        Objects.requireNonNull(getCommand("feed")).setExecutor(new FeedCommand());
+        Objects.requireNonNull(getCommand("fly")).setExecutor(new FlyCommand());
+        Objects.requireNonNull(getCommand("gm")).setExecutor(new GMCommand());
+        Objects.requireNonNull(getCommand("godmode")).setExecutor(new GodmodeCommand());
+        Objects.requireNonNull(getCommand("heal")).setExecutor(new HealCommand());
+        Objects.requireNonNull(getCommand("speed")).setExecutor(new SpeedCommand());
+        Objects.requireNonNull(getCommand("sudo")).setExecutor(new SudoCommand());
+        Objects.requireNonNull(getCommand("weed")).setExecutor(new WeedCommand());
 
         //Send
-        getCommand("sendactionbar").setExecutor(new SendActionBarCommand());
-        getCommand("sendmessage").setExecutor(new SendMessageCommand());
-        getCommand("sendtitle").setExecutor(new SendTitleCommand());
+        Objects.requireNonNull(getCommand("sendactionbar")).setExecutor(new SendActionBarCommand());
+        Objects.requireNonNull(getCommand("sendmessage")).setExecutor(new SendMessageCommand());
+        Objects.requireNonNull(getCommand("sendtitle")).setExecutor(new SendTitleCommand());
 
         //Server
-        getCommand("banall").setExecutor(new BanAllCommand());
-        getCommand("config").setExecutor(new ConfigCommand());
-        getCommand("kickall").setExecutor(new KickAllCommand());
-        getCommand("report").setExecutor(new ReportCommand());
-        getCommand("staffchat").setExecutor(new StaffChatCommand());
+        Objects.requireNonNull(getCommand("banall")).setExecutor(new BanAllCommand());
+        Objects.requireNonNull(getCommand("config")).setExecutor(new ConfigCommand());
+        Objects.requireNonNull(getCommand("kickall")).setExecutor(new KickAllCommand());
+        Objects.requireNonNull(getCommand("report")).setExecutor(new ReportCommand());
+        Objects.requireNonNull(getCommand("staffchat")).setExecutor(new StaffChatCommand());
 
         //Setter
-        getCommand("setlink").setExecutor(new SetLinkCommand());
-        getCommand("setprefix").setExecutor(new SetPrefixCommand());
+        Objects.requireNonNull(getCommand("setlink")).setExecutor(new SetLinkCommand());
+        Objects.requireNonNull(getCommand("setprefix")).setExecutor(new SetPrefixCommand());
 
         //Storing
-        getCommand("backpackstored").setExecutor(new BackpackStoredCommand());
-        getCommand("ffaarmor").setExecutor(new FFAArmorCommand());
-        getCommand("ffainventory").setExecutor(new FFAInventoryCommand());
-        getCommand("restoreinventory").setExecutor(new RestoreInventoryCommand());
-        getCommand("storeinventory").setExecutor(new StoreInventoryCommand());
+        Objects.requireNonNull(getCommand("backpackstored")).setExecutor(new BackpackStoredCommand());
+        Objects.requireNonNull(getCommand("ffaarmor")).setExecutor(new FFAArmorCommand());
+        Objects.requireNonNull(getCommand("ffainventory")).setExecutor(new FFAInventoryCommand());
+        Objects.requireNonNull(getCommand("restoreinventory")).setExecutor(new RestoreInventoryCommand());
+        Objects.requireNonNull(getCommand("storeinventory")).setExecutor(new StoreInventoryCommand());
 
         //World
-        getCommand("day").setExecutor(new DayCommand());
-        getCommand("forceloadchunk").setExecutor(new ForceLoadChunkCommand());
-        getCommand("getentities").setExecutor(new GetEntitesCommand());
-        getCommand("killradius").setExecutor(new KillRadiusCommand());
-        getCommand("navigator").setExecutor(new NavigatorCommand());
-        getCommand("night").setExecutor(new NightCommand());
+        Objects.requireNonNull(getCommand("cb")).setExecutor(new CBCommand());
+        Objects.requireNonNull(getCommand("day")).setExecutor(new DayCommand());
+        Objects.requireNonNull(getCommand("end")).setExecutor(new EndCommand());
+        Objects.requireNonNull(getCommand("farmwelt")).setExecutor(new FarmweltCommand());
+        Objects.requireNonNull(getCommand("ffa")).setExecutor(new FFACommand());
+        Objects.requireNonNull(getCommand("forceloadchunk")).setExecutor(new ForceLoadChunkCommand());
+        Objects.requireNonNull(getCommand("getentities")).setExecutor(new GetEntitesCommand());
+        Objects.requireNonNull(getCommand("killradius")).setExecutor(new KillRadiusCommand());
+        Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
+        Objects.requireNonNull(getCommand("navigator")).setExecutor(new NavigatorCommand());
+        Objects.requireNonNull(getCommand("nether")).setExecutor(new NetherCommand());
+        Objects.requireNonNull(getCommand("night")).setExecutor(new NightCommand());
     }
 
     public static CCPlugin getInstance() {
@@ -303,8 +309,6 @@ public final class CCPlugin extends JavaPlugin {
         if (dir.listFiles() == null) return;
 
         File newDir = new File("./plugins/CityCraft");
-
-        if (!newDir.exists()) dir.mkdirs();
 
         for (File file : Objects.requireNonNull(dir.listFiles())) {
             try {

@@ -36,7 +36,7 @@ public class NavigatorListener implements Listener {
 
             event.setCancelled(true);
 
-            if (Objects.equals(Objects.requireNonNull(event.getCurrentItem()).getItemMeta().displayName(), Component.text("§2Farmwelt"))) {
+            if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§2Farmwelt"))) {
                 FarmweltData farmweltData = FarmweltData.getFarmweltData();
 
                 if (CCPlugin.getInstance().getServer().getWorld(farmweltData.getWorldName()) != null) {
@@ -56,7 +56,7 @@ public class NavigatorListener implements Listener {
 
                 player.closeInventory();
             }
-            else if (Objects.equals(Objects.requireNonNull(event.getCurrentItem()).getItemMeta().displayName(), Component.text("§cNether"))) {
+            else if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§cNether"))) {
                 NetherData netherData = NetherData.getNetherData();
 
                 if (CCPlugin.getInstance().getServer().getWorld(netherData.getWorldName()) != null) {
@@ -76,7 +76,7 @@ public class NavigatorListener implements Listener {
 
                 player.closeInventory();
             }
-            else if (Objects.equals(Objects.requireNonNull(event.getCurrentItem()).getItemMeta().displayName(), Component.text("§eEnd"))) {
+            else if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§eEnd"))) {
                 EndData endData = EndData.getEndData();
 
                 if (CCPlugin.getInstance().getServer().getWorld(endData.getWorldName()) != null) {
@@ -96,7 +96,7 @@ public class NavigatorListener implements Listener {
 
                 player.closeInventory();
             }
-            else if (Objects.equals(Objects.requireNonNull(event.getCurrentItem()).getItemMeta().displayName(), Component.text("§3CityBuild"))) {
+            else if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§3CityBuild"))) {
                 CB01Data cb01Data = CB01Data.getCB01Data();
 
                 if (CCPlugin.getInstance().getServer().getWorld(cb01Data.getWorldName()) != null) {
@@ -116,7 +116,27 @@ public class NavigatorListener implements Listener {
 
                 player.closeInventory();
             }
-            else if (Objects.equals(Objects.requireNonNull(event.getCurrentItem()).getItemMeta().displayName(), Component.text("§4FFA"))) {
+            else if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§bLobby"))) {
+                LobbyData lobbyData = LobbyData.getLobbyData();
+
+                if (CCPlugin.getInstance().getServer().getWorld(lobbyData.getWorldName()) != null) {
+                    player.teleport(new Location(
+                            CCPlugin.getInstance().getServer().getWorld(lobbyData.getWorldName()),
+                            lobbyData.getX(),
+                            lobbyData.getY(),
+                            lobbyData.getZ(),
+                            lobbyData.getYaw(),
+                            lobbyData.getPitch()));
+                }
+                else {
+                    if (player.isOp()) {
+                        player.sendMessage(CCPlugin.getPrefix() + "Es gibt aus irgendeinem Grund die Welt mit dem Namen \"" + lobbyData.getWorldName() + "\" nicht...");
+                    }
+                }
+
+                player.closeInventory();
+            }
+            else if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§4FFA"))) {
                 FFAData ffaData = FFAData.getFFAData();
 
                 if (CCPlugin.getInstance().getServer().getWorld(ffaData.getWorldName()) != null) {
@@ -136,7 +156,7 @@ public class NavigatorListener implements Listener {
 
                 player.closeInventory();
             }
-            else if (Objects.equals(Objects.requireNonNull(event.getCurrentItem()).getItemMeta().displayName(), Component.text("§cSchließen"))) {
+            else if (Objects.equals(event.getCurrentItem().getItemMeta().displayName(), Component.text("§cSchließen"))) {
                 player.closeInventory();
             }
         }

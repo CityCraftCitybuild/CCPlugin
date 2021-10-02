@@ -17,12 +17,10 @@ public class NavigatorCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!(sender instanceof Player)) {
+        if(!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Dieser Command kann leider nur InGame ausgeführt werden!");
             return true;
         }
-
-        Player player = (Player) sender;
 
         if(player.hasPermission("mario.nav") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             player.closeInventory();
@@ -40,6 +38,9 @@ public class NavigatorCommand implements CommandExecutor {
 
             ItemStack cb = new ItemStack(Material.SMOOTH_QUARTZ, 1);
             ItemMeta cbMeta = cb.getItemMeta();
+
+            ItemStack lobby = new ItemStack(Material.BEACON, 1);
+            ItemMeta lobbyMeta = lobby.getItemMeta();
 
             ItemStack ffa = new ItemStack(Material.IRON_SWORD, 1);
             ItemMeta ffaMeta = ffa.getItemMeta();
@@ -66,6 +67,10 @@ public class NavigatorCommand implements CommandExecutor {
 
             cb.setItemMeta(cbMeta);
 
+            lobbyMeta.displayName(Component.text("§bLobby"));
+
+            lobby.setItemMeta(lobbyMeta);
+
             ffaMeta.displayName(Component.text("§4FFA"));
 
             ffa.setItemMeta(ffaMeta);
@@ -82,6 +87,7 @@ public class NavigatorCommand implements CommandExecutor {
             inventory.setItem(20, nether);
             inventory.setItem(29, end);
             inventory.setItem(15, cb);
+            inventory.setItem(22, lobby);
             inventory.setItem(24, ffa);
             inventory.setItem(53, close);
 
