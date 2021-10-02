@@ -1,6 +1,7 @@
 package de.mariocst.cc.config.configdata;
 
 import de.mariocst.cc.backpack.Base64;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
@@ -13,12 +14,12 @@ public class InventoryData {
 
     public InventoryData(UUID uuid) {
         this.uuid = uuid;
-        this.inventory = Bukkit.createInventory(null, 54, "Inventory");
+        this.inventory = Bukkit.createInventory(null, 54, Component.text("Inventory"));
     }
 
     public InventoryData(UUID uuid, String base64) throws IOException {
         this.uuid = uuid;
-        this.inventory = Bukkit.createInventory(null, 54, "Inventory");
+        this.inventory = Bukkit.createInventory(null, 54, Component.text("Inventory"));
         this.inventory.setContents(Base64.itemStackArrayFromBase64(base64));
     }
 

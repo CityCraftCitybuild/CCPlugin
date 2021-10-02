@@ -8,16 +8,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class KickAllCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         final String usage = "/kickall [Grund]";
 
-        if(!(sender instanceof Player)) {
+        if(!(sender instanceof Player player)) {
             try {
+                int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                 if (args.length == 0) {
-                    int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                     if (count == 0) {
                         sender.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
                         return false;
@@ -25,35 +26,31 @@ public class KickAllCommand implements CommandExecutor {
                     else {
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                             if (!t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
-                                t.kick(Component.join(Component.text().content("Kicked by Admin")));
+                                t.kick(Component.text("Kicked by Admin"));
                             }
                         }
 
                         sender.sendMessage(CCPlugin.getPrefix() + "Alle Spieler gekickt!");
                     }
                 }
-                else if (args.length >= 1) {
-                    int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
+                else {
                     if (count == 0) {
                         sender.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
                         return false;
                     }
                     else {
-                        String reason = "";
-                        for(int i = 0; i < args.length; i++) {
-                            reason = reason + args[i] + " ";
+                        StringBuilder reason = new StringBuilder();
+                        for (String arg : args) {
+                            reason.append(arg).append(" ");
                         }
 
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                             if (!t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
-                                t.kick(Component.join(Component.text().content(reason)));
+                                t.kick(Component.text(reason.toString()));
                             }
                         }
                         sender.sendMessage(CCPlugin.getPrefix() + "Alle Spieler mit dem Grund " + reason + " gekickt!");
                     }
-                }
-                else {
-                    sender.sendMessage(CCPlugin.getPrefix() + usage);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
@@ -62,11 +59,10 @@ public class KickAllCommand implements CommandExecutor {
             return false;
         }
 
-        Player player = (Player) sender;
         if(player.hasPermission("mario.kickall") || player.hasPermission("*") || player.isOp()) {
             try {
+                int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                 if (args.length == 0) {
-                    int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                     if (count == 1) {
                         sender.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
                         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
@@ -75,37 +71,32 @@ public class KickAllCommand implements CommandExecutor {
                     else {
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                             if (t != sender && !t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
-                                t.kick(Component.join(Component.text().content("Kicked by Admin")));
+                                t.kick(Component.text("Kicked by Admin"));
                             }
                         }
 
                         sender.sendMessage(CCPlugin.getPrefix() + "Alle Spieler gekickt!");
                     }
                 }
-                else if (args.length >= 1) {
-                    int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
+                else {
                     if (count == 1) {
                         sender.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
                         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                         return false;
                     }
                     else {
-                        String reason = "";
-                        for(int i = 0; i < args.length; i++) {
-                            reason = reason + args[i] + " ";
+                        StringBuilder reason = new StringBuilder();
+                        for (String arg : args) {
+                            reason.append(arg).append(" ");
                         }
 
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                             if (t != sender && !t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
-                                t.kick(Component.join(Component.text().content(reason)));
+                                t.kick(Component.text(reason.toString()));
                             }
                         }
                         sender.sendMessage(CCPlugin.getPrefix() + "Alle Spieler mit dem Grund " + reason + " gekickt!");
                     }
-                }
-                else {
-                    sender.sendMessage(CCPlugin.getPrefix() + usage);
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {

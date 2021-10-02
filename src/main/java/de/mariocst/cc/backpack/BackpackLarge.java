@@ -1,5 +1,6 @@
 package de.mariocst.cc.backpack;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
@@ -12,12 +13,12 @@ public class BackpackLarge {
 
     public BackpackLarge(UUID uuid) {
         this.uuid = uuid;
-        this.inventory = Bukkit.createInventory(null, 54, "Backpack");
+        this.inventory = Bukkit.createInventory(null, 54, Component.text("Backpack"));
     }
 
     public BackpackLarge(UUID uuid, String base64) throws IOException {
         this.uuid = uuid;
-        this.inventory = Bukkit.createInventory(null, 54, "Backpack");
+        this.inventory = Bukkit.createInventory(null, 54, Component.text("Backpack"));
         this.inventory.setContents(Base64.itemStackArrayFromBase64(base64));
     }
 

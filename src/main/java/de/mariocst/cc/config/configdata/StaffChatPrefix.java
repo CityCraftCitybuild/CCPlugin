@@ -2,6 +2,7 @@ package de.mariocst.cc.config.configdata;
 
 import de.mariocst.cc.CCPlugin;
 import de.mariocst.cc.config.configs.Config;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;
 
 public class StaffChatPrefix {
@@ -38,7 +39,10 @@ public class StaffChatPrefix {
     }
 
     public String getPlayerPrefix(Player player) {
-        return this.getPrefix().replaceAll("%player_name%", player.getName()).replaceAll("%player_disname%", player.getDisplayName());
+        TextComponent component = (TextComponent) player.displayName();
+        String disName = component.toString();
+
+        return this.getPrefix().replaceAll("%player_name%", player.getName()).replaceAll("%player_disname%", disName);
     }
 
     public String getConsolePrefix() {

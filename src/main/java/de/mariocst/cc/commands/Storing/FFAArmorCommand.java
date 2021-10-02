@@ -24,17 +24,16 @@ public class FFAArmorCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage(CCPlugin.getPrefix() + "Dieser Command geht nur InGame!");
             return true;
         } else {
-            Player player = (Player) sender;
 
             if(player.hasPermission("mario.ffaarmor") || player.hasPermission("mario.*") || player.isOp()) {
                 if (!player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName()) || player.isOp()) {
                     player.closeInventory();
 
-                    Inventory inventory = CCPlugin.getInstance().getServer().createInventory(player, 9, Component.join(Component.text().content("Deine Rüstung")));
+                    Inventory inventory = CCPlugin.getInstance().getServer().createInventory(player, 9, Component.text("Deine Rüstung"));
 
                     ItemStack empty = new ItemStack(Material.AIR, 0);
                     Inventory inventoryData = CCPlugin.getInstance().getInventoryDataManager().getInventory(player.getUniqueId()).getInventory();
