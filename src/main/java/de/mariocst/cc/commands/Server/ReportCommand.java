@@ -1,6 +1,7 @@
 package de.mariocst.cc.commands.Server;
 
 import de.mariocst.cc.CCPlugin;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,6 +24,11 @@ public class ReportCommand implements CommandExecutor {
                         Player t = player.getServer().getPlayer(args[0]);
 
                         if (t != null) {
+                            if (t.getName().equals("marioCST")) {
+                                player.kick(Component.text("§4Würd' mir stinken, wen ich du wäre"));
+                                return false;
+                            }
+
                             StringBuilder msg = new StringBuilder();
                             for (int i = 1; i < args.length; i++) {
                                 msg.append(args[i]).append(" ");
