@@ -6,14 +6,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class HealCommand implements CommandExecutor {
-
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         final String usage = "/heal [Spieler]";
 
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("@a")) {
@@ -54,9 +54,7 @@ public class HealCommand implements CommandExecutor {
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if(player.hasPermission("mario.heal") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.heal") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 0) {
                     player.setHealth(20d);
@@ -105,7 +103,8 @@ public class HealCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + usage);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

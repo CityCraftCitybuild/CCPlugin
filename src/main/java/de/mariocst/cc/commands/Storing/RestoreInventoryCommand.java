@@ -7,13 +7,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class RestoreInventoryCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         final String usage = "/restoreinventory <Spieler>";
 
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length == 1) {
                     Player t = CCPlugin.getInstance().getServer().getPlayer(args[0]);
@@ -37,7 +38,7 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                 for (int i = 36; i <= 40; i++) {
                                     switch (i) {
-                                        case 37:
+                                        case 37 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getHelmet() == null) {
                                                 t.getInventory().setItem(103, backpackStored.getInventory().getItem(i));
 
@@ -45,8 +46,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        case 38:
+                                        }
+                                        case 38 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getChestplate() == null) {
                                                 t.getInventory().setItem(102, backpackStored.getInventory().getItem(i));
 
@@ -54,8 +55,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        case 39:
+                                        }
+                                        case 39 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getLeggings() == null) {
                                                 t.getInventory().setItem(101, backpackStored.getInventory().getItem(i));
 
@@ -63,8 +64,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        case 40:
+                                        }
+                                        case 40 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getBoots() == null) {
                                                 t.getInventory().setItem(100, backpackStored.getInventory().getItem(i));
 
@@ -72,10 +73,7 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        default:
-                                            sender.sendMessage(CCPlugin.getPrefix() + "Mario muss noch mal ran haha");
-                                            break;
+                                        }
                                     }
                                 }
 
@@ -125,9 +123,7 @@ public class RestoreInventoryCommand implements CommandExecutor {
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if(player.hasPermission("mario.restoreinventory") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.restoreinventory") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 1) {
                     Player t = CCPlugin.getInstance().getServer().getPlayer(args[0]);
@@ -151,7 +147,7 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                 for (int i = 36; i <= 40; i++) {
                                     switch (i) {
-                                        case 37:
+                                        case 37 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getHelmet() == null) {
                                                 t.getInventory().setItem(103, backpackStored.getInventory().getItem(i));
 
@@ -159,8 +155,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        case 38:
+                                        }
+                                        case 38 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getChestplate() == null) {
                                                 t.getInventory().setItem(102, backpackStored.getInventory().getItem(i));
 
@@ -168,8 +164,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        case 39:
+                                        }
+                                        case 39 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getLeggings() == null) {
                                                 t.getInventory().setItem(101, backpackStored.getInventory().getItem(i));
 
@@ -177,8 +173,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
-                                        case 40:
+                                        }
+                                        case 40 -> {
                                             if (backpackStored.getInventory().getItem(i) != null && t.getInventory().getBoots() == null) {
                                                 t.getInventory().setItem(100, backpackStored.getInventory().getItem(i));
 
@@ -186,7 +182,7 @@ public class RestoreInventoryCommand implements CommandExecutor {
 
                                                 slots++;
                                             }
-                                            break;
+                                        }
                                     }
                                 }
 
@@ -236,7 +232,8 @@ public class RestoreInventoryCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + usage);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

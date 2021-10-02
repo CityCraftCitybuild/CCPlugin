@@ -10,22 +10,9 @@ public class BackpacksStored {
     private final YamlConfiguration backpacksStored;
 
     public BackpacksStored() {
-
         File dir = new File("./plugins/CityCraft");
 
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
         this.file = new File(dir, "backpacksstored.yml");
-
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         this.backpacksStored = YamlConfiguration.loadConfiguration(file);
     }

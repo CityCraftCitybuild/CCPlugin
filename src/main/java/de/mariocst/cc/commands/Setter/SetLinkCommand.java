@@ -8,69 +8,72 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class SetLinkCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String msg = "";
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        StringBuilder msg = new StringBuilder();
 
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             if (args.length >= 2) {
                 switch (args[0].toLowerCase()) {
                     case "discord" -> {
-                        for(int i = 1; i < args.length; i++) {
-                            msg = msg + args[i] + " ";
+                        for (int i = 1; i < args.length; i++) {
+                            msg.append(args[i]).append(" ");
                         }
 
-                        DiscordLink.getDiscordLink().setLink(msg);
+                        DiscordLink.getDiscordLink().setLink(msg.toString());
                         sender.sendMessage(CCPlugin.getPrefix() + "Der Discord Link ist nun: §a" + msg);
                         CCPlugin.getInstance().saveConfigs();
                     }
                     case "web" -> {
-                        for(int i = 1; i < args.length; i++) {
-                            msg = msg + args[i] + " ";
+                        for (int i = 1; i < args.length; i++) {
+                            msg.append(args[i]).append(" ");
                         }
 
-                        WebLink.getWebLink().setLink(msg);
+                        WebLink.getWebLink().setLink(msg.toString());
                         sender.sendMessage(CCPlugin.getPrefix() + "Der Web Link ist nun: §a" + msg);
                         CCPlugin.getInstance().saveConfigs();
                     }
                     default -> sender.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
                 }
-            } else {
+            }
+            else {
                 CCPlugin.getInstance().log("§cUsage: §e/setlink <discord|web> <Link>");
             }
             return false;
         }
 
-        Player player = (Player) sender;
-        if(player.hasPermission("mario.setlink") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.setlink") || player.hasPermission("*") || player.isOp()) {
             if (args.length >= 2) {
                 switch (args[0].toLowerCase()) {
                     case "discord" -> {
-                        for(int i = 1; i < args.length; i++) {
-                            msg = msg + args[i] + " ";
+                        for (int i = 1; i < args.length; i++) {
+                            msg.append(args[i]).append(" ");
                         }
 
-                        DiscordLink.getDiscordLink().setLink(msg);
+                        DiscordLink.getDiscordLink().setLink(msg.toString());
                         sender.sendMessage(CCPlugin.getPrefix() + "Der Discord Link ist nun: §a" + msg);
                         CCPlugin.getInstance().saveConfigs();
                     }
                     case "web" -> {
-                        for(int i = 1; i < args.length; i++) {
-                            msg = msg + args[i] + " ";
+                        for (int i = 1; i < args.length; i++) {
+                            msg.append(args[i]).append(" ");
                         }
 
-                        WebLink.getWebLink().setLink(msg);
+                        WebLink.getWebLink().setLink(msg.toString());
                         sender.sendMessage(CCPlugin.getPrefix() + "Der Web Link ist nun: §a" + msg);
                         CCPlugin.getInstance().saveConfigs();
                     }
                     default -> sender.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
                 }
-            } else {
+            }
+            else {
                 sender.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

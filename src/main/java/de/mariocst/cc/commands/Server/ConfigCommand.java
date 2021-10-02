@@ -6,12 +6,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class ConfigCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        if(!(sender instanceof Player)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length == 1) {
                     switch (args[0].toLowerCase()) {
@@ -23,9 +23,7 @@ public class ConfigCommand implements CommandExecutor {
                             CCPlugin.getInstance().reloadConfigs();
                             sender.sendMessage(CCPlugin.getPrefix() + "Configs neu geladen!");
                         }
-                        default -> {
-                            sender.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
-                        }
+                        default -> sender.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
                     }
                 }
                 else {
@@ -38,9 +36,7 @@ public class ConfigCommand implements CommandExecutor {
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if(player.hasPermission("mario.config") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.config") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 1) {
                     switch (args[0].toLowerCase()) {
@@ -52,9 +48,7 @@ public class ConfigCommand implements CommandExecutor {
                             CCPlugin.getInstance().reloadConfigs();
                             player.sendMessage(CCPlugin.getPrefix() + "Configs neu geladen!");
                         }
-                        default -> {
-                            player.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
-                        }
+                        default -> player.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
                     }
                 }
                 else {
@@ -66,7 +60,8 @@ public class ConfigCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

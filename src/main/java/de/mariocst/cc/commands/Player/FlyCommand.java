@@ -8,25 +8,27 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class FlyCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         final String usage = "/fly [Spieler]";
 
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length == 1) {
                     Player t = CCPlugin.getInstance().getServer().getPlayer(args[0]);
 
                     try {
                         if (t != null) {
-                            if(!(t.getAllowFlight())) {
+                            if (!(t.getAllowFlight())) {
                                 t.setAllowFlight(true);
                                 t.setFlying(true);
                                 t.sendMessage(CCPlugin.getPrefix() + "§aDu fliegst nun.");
                                 sender.sendMessage(CCPlugin.getPrefix() + "§aDer Spieler " + t.getName() + " fliegt nun.");
-                            } else {
+                            }
+                            else {
                                 t.setAllowFlight(false);
                                 t.setFlying(false);
                                 t.sendMessage(CCPlugin.getPrefix() + "§4Du fliegst nun nicht mehr.");
@@ -52,17 +54,17 @@ public class FlyCommand implements CommandExecutor {
             return false;
         }
 
-        Player player = (Player) sender;
-        if(player.hasPermission("mario.fly") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.fly") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 0) {
                     if (!FlyWorlds.getFlyWorlds().getWorlds().isEmpty()) {
                         if (player.hasPermission("mario.fly.bypass") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
-                            if(!(player.getAllowFlight())) {
+                            if (!(player.getAllowFlight())) {
                                 player.setAllowFlight(true);
                                 player.setFlying(true);
                                 player.sendMessage(CCPlugin.getPrefix() + "§aDu fliegst nun.");
-                            } else {
+                            }
+                            else {
                                 player.setAllowFlight(false);
                                 player.setFlying(false);
                                 player.sendMessage(CCPlugin.getPrefix() + "§4Du fliegst nun nicht mehr.");
@@ -71,11 +73,12 @@ public class FlyCommand implements CommandExecutor {
                         }
 
                         if (FlyWorlds.getFlyWorlds().getWorlds().contains(player.getWorld().getName())) {
-                            if(!(player.getAllowFlight())) {
+                            if (!(player.getAllowFlight())) {
                                 player.setAllowFlight(true);
                                 player.setFlying(true);
                                 player.sendMessage(CCPlugin.getPrefix() + "§aDu fliegst nun.");
-                            } else {
+                            }
+                            else {
                                 player.setAllowFlight(false);
                                 player.setFlying(false);
                                 player.sendMessage(CCPlugin.getPrefix() + "§4Du fliegst nun nicht mehr.");
@@ -92,11 +95,12 @@ public class FlyCommand implements CommandExecutor {
                             return true;
                         }
 
-                        if(!(player.getAllowFlight())) {
+                        if (!(player.getAllowFlight())) {
                             player.setAllowFlight(true);
                             player.setFlying(true);
                             player.sendMessage(CCPlugin.getPrefix() + "§aDu fliegst nun.");
-                        } else {
+                        }
+                        else {
                             player.setAllowFlight(false);
                             player.setFlying(false);
                             player.sendMessage(CCPlugin.getPrefix() + "§4Du fliegst nun nicht mehr.");
@@ -114,12 +118,13 @@ public class FlyCommand implements CommandExecutor {
 
                     try {
                         if (t != null) {
-                            if(!(t.getAllowFlight())) {
+                            if (!(t.getAllowFlight())) {
                                 t.setAllowFlight(true);
                                 t.setFlying(true);
                                 t.sendMessage(CCPlugin.getPrefix() + "§aDu fliegst nun.");
                                 player.sendMessage(CCPlugin.getPrefix() + "§aDer Spieler " + t.getName() + " fliegt nun.");
-                            } else {
+                            }
+                            else {
                                 t.setAllowFlight(false);
                                 t.setFlying(false);
                                 t.sendMessage(CCPlugin.getPrefix() + "§4Du fliegst nun nicht mehr.");
@@ -146,7 +151,8 @@ public class FlyCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + usage);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             sender.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

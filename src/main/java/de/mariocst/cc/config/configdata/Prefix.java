@@ -48,10 +48,6 @@ public class Prefix {
         this.prefix = prefix;
     }
 
-    public String getDefaultPrefix() {
-        return "§8[§6marioCST.de§8] §b";
-    }
-
     public void save() {
         Config config = CCPlugin.getInstance().getConfiguration();
 

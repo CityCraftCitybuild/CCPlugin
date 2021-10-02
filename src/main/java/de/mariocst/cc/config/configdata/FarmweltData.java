@@ -51,10 +51,7 @@ public class FarmweltData {
             for (Map.Entry<String, Object> entry : values.entrySet()) {
                 round++;
 
-                if (round == 7) {
-                    round = 0;
-                    return;
-                }
+                if (round == 7) return;
 
                 switch (entry.getKey().toLowerCase()) {
                     case "world_name" -> this.worldName = entry.getValue().toString();
@@ -109,10 +106,7 @@ public class FarmweltData {
             for (Map.Entry<String, Object> entry : values.entrySet()) {
                 round++;
 
-                if (round == 7) {
-                    round = 0;
-                    return;
-                }
+                if (round == 7) return;
 
                 switch (entry.getKey().toLowerCase()) {
                     case "world_name" -> this.worldName = entry.getValue().toString();

@@ -82,9 +82,7 @@ public class JoinListener implements Listener {
 
                         player.getInventory().setItem(i, bow);
                     }
-                    case 2 -> {
-                        player.getInventory().setItem(i, new ItemStack(Material.ARROW, 16));
-                    }
+                    case 2 -> player.getInventory().setItem(i, new ItemStack(Material.ARROW, 16));
                 }
             }
 
@@ -173,14 +171,9 @@ public class JoinListener implements Listener {
                 }
             }
 
-            if (player.getInventory().getItemInOffHand() != null) {
-                inventoryData.getInventory().setItem(40, player.getInventory().getItemInOffHand());
+            inventoryData.getInventory().setItem(40, player.getInventory().getItemInOffHand());
 
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR, 0));
-            }
-            else {
-                inventoryData.getInventory().setItem(40, new ItemStack(Material.AIR, 0));
-            }
+            player.getInventory().setItemInOffHand(new ItemStack(Material.AIR, 0));
 
             CCPlugin.getInstance().getInventoryDataManager().save();
         }

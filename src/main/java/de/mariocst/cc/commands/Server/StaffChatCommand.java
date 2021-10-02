@@ -6,22 +6,23 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class StaffChatCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player player)) {
             if (args.length >= 1) {
-                String msg = "";
-                for(int i = 1; i < args.length; i++) {
-                    msg = msg + args[i] + " ";
+                StringBuilder msg = new StringBuilder();
+                for (int i = 1; i < args.length; i++) {
+                    msg.append(args[i]).append(" ");
                 }
 
-                CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getConsolePrefix() + msg.replaceAll("&", "§"));
+                CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getConsolePrefix() + msg.toString().replaceAll("&", "§"));
 
                 for (Player staff : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                     if (staff.hasPermission("mario.staff") || staff.hasPermission("mario.*") || staff.hasPermission("*") || staff.isOp()) {
-                        staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getConsolePrefix() + msg.replaceAll("&", "§"));
+                        staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getConsolePrefix() + msg.toString().replaceAll("&", "§"));
                     }
                 }
             }
@@ -31,9 +32,7 @@ public class StaffChatCommand implements CommandExecutor {
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if(player.hasPermission("mario.staff") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.staff") || player.hasPermission("*") || player.isOp()) {
             if (args.length == 0) {
                 player.sendMessage(CCPlugin.getPrefix() + "§6-- StaffChat Help --");
                 player.sendMessage(CCPlugin.getPrefix() + "§6/sc help: Zeigt dir diese Hilfe an!");
@@ -67,16 +66,16 @@ public class StaffChatCommand implements CommandExecutor {
                         player.sendMessage(CCPlugin.getPrefix() + "Du schreibst nun nicht mehr in den Staff Chat!");
                     }
                     case "say" -> {
-                        String msg = "";
-                        for(int i = 1; i < args.length; i++) {
-                            msg = msg + args[i] + " ";
+                        StringBuilder msg = new StringBuilder();
+                        for (int i = 1; i < args.length; i++) {
+                            msg.append(args[i]).append(" ");
                         }
 
-                        CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + msg.replaceAll("&", "§"));
+                        CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + msg.toString().replaceAll("&", "§"));
 
                         for (Player staff : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                             if (staff.hasPermission("mario.staff") || staff.hasPermission("mario.*") || staff.hasPermission("*") || staff.isOp()) {
-                                staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + msg.replaceAll("&", "§"));
+                                staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + msg.toString().replaceAll("&", "§"));
                             }
                         }
                     }
@@ -90,7 +89,8 @@ public class StaffChatCommand implements CommandExecutor {
                     }
                 }
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

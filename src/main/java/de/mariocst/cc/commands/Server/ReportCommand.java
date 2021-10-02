@@ -1,7 +1,6 @@
 package de.mariocst.cc.commands.Server;
 
 import de.mariocst.cc.CCPlugin;
-import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,26 +9,23 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class ReportCommand implements CommandExecutor {
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Du brauchst doch niemanden zu reporten. Ban ihn einfach!");
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if(player.hasPermission("mario.report") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.report") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length >= 2) {
                     try {
                         Player t = player.getServer().getPlayer(args[0]);
 
                         if (t != null) {
-                            String msg = "";
-                            for(int i = 1; i < args.length; i++) {
-                                msg = msg + args[i] + " ";
+                            StringBuilder msg = new StringBuilder();
+                            for (int i = 1; i < args.length; i++) {
+                                msg.append(args[i]).append(" ");
                             }
 
                             int staffOnline = 0;
@@ -60,7 +56,8 @@ public class ReportCommand implements CommandExecutor {
                         player.sendMessage("§cDieser Spieler existiert nicht!");
                         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                     }
-                } else {
+                }
+                else {
                     player.sendMessage("§cUsage: §e/report <Spieler> <Message>");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                 }
@@ -69,8 +66,8 @@ public class ReportCommand implements CommandExecutor {
                 player.sendMessage("§cUsage: §e/report <Spieler> <Message>");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

@@ -13,17 +13,13 @@ public class Worlds {
     private final YamlConfiguration config;
 
     public Worlds() {
-
         File dir = new File("./plugins/CityCraft");
-
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
 
         this.file = new File(dir, "welten.yml");
 
         if (!file.exists()) {
             try (InputStream in = CCPlugin.getInstance().getResource("welten.yml")) {
+                assert in != null;
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
                 e.printStackTrace();

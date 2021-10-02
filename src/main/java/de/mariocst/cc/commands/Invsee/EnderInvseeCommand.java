@@ -6,17 +6,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class EnderInvseeCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Bitte führe den Command InGame aus!");
             return false;
         }
 
-        Player player = (Player) sender;
-        if(player.hasPermission("mario.enderinvsee") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.enderinvsee") || player.hasPermission("*") || player.isOp()) {
             String usage = "§cUsage: §6/enderinvsee <Spieler>";
             try {
                 if (args.length == 1) {
@@ -52,7 +52,8 @@ public class EnderInvseeCommand implements CommandExecutor {
                 sender.sendMessage(CCPlugin.getPrefix() + usage);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

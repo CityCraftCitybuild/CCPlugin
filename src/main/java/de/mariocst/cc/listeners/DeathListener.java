@@ -3,16 +3,12 @@ package de.mariocst.cc.listeners;
 import de.mariocst.cc.CCPlugin;
 import de.mariocst.cc.config.configdata.FFAData;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
 
 public class DeathListener implements Listener {
     @EventHandler

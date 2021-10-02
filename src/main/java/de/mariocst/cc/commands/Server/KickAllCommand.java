@@ -2,7 +2,6 @@ package de.mariocst.cc.commands.Server;
 
 import de.mariocst.cc.CCPlugin;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +14,7 @@ public class KickAllCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         final String usage = "/kickall [Grund]";
 
-        if(!(sender instanceof Player player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                 if (args.length == 0) {
@@ -59,7 +58,7 @@ public class KickAllCommand implements CommandExecutor {
             return false;
         }
 
-        if(player.hasPermission("mario.kickall") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.kickall") || player.hasPermission("*") || player.isOp()) {
             try {
                 int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                 if (args.length == 0) {
@@ -103,7 +102,8 @@ public class KickAllCommand implements CommandExecutor {
                 sender.sendMessage(CCPlugin.getPrefix() + usage);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

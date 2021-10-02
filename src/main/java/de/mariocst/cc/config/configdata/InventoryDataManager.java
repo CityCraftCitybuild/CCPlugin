@@ -1,8 +1,6 @@
 package de.mariocst.cc.config.configdata;
 
 import de.mariocst.cc.CCPlugin;
-import de.mariocst.cc.backpack.Backpack;
-import de.mariocst.cc.config.configs.Backpacks;
 import de.mariocst.cc.config.configs.Inventories;
 
 import java.io.IOException;
@@ -25,10 +23,6 @@ public class InventoryDataManager {
         InventoryData inventory = new InventoryData(uuid);
         map.put(uuid, inventory);
         return inventory;
-    }
-
-    public void setInventory(UUID uuid, InventoryData inventory) {
-        map.put(uuid, inventory);
     }
 
     public void load() {

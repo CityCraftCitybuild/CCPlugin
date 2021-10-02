@@ -8,11 +8,7 @@ import org.bukkit.entity.Player;
 public class StaffChatPrefix {
     private String prefix;
 
-    private static StaffChatPrefix staffChatPrefix;
-
     public StaffChatPrefix() {
-        staffChatPrefix = this;
-
         Config config = CCPlugin.getInstance().getConfiguration();
 
         if (config.getConfig().contains("staffchatprefix")) {
@@ -32,10 +28,6 @@ public class StaffChatPrefix {
         else {
             this.prefix = "§8[§6StaffChat§8] §7%player_name% §8» §6";
         }
-    }
-
-    public static StaffChatPrefix getStaffChatPrefix() {
-        return staffChatPrefix;
     }
 
     public String getPlayerPrefix(Player player) {

@@ -25,10 +25,6 @@ public class BackpackManagerStored {
         return backpack;
     }
 
-    public void setBackpack(UUID uuid, BackpackStored backpack) {
-        map.put(uuid, backpack);
-    }
-
     public void load() {
         BackpacksStored backpacksStored = CCPlugin.getInstance().getBackpacksStored();
 

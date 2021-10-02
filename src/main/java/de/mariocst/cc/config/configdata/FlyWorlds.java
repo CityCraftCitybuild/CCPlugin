@@ -9,7 +9,7 @@ import java.util.List;
 public class FlyWorlds {
     private static FlyWorlds flyWorlds;
 
-    private List<String> worlds = new ArrayList<>();
+    private final List<String> worlds = new ArrayList<>();
 
     public FlyWorlds() {
         flyWorlds = this;

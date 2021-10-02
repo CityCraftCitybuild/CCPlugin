@@ -10,22 +10,9 @@ public class Inventories {
     private final YamlConfiguration inventories;
 
     public Inventories() {
-
         File dir = new File("./plugins/CityCraft");
 
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
         this.file = new File(dir, "inventories.yml");
-
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         this.inventories = YamlConfiguration.loadConfiguration(file);
     }

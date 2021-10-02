@@ -13,14 +13,12 @@ import org.jetbrains.annotations.NotNull;
 public class LobbyCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Dieser Command kann leider nur InGame ausgeführt werden!");
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if(player.hasPermission("mario.lobby") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.lobby") || player.hasPermission("*") || player.isOp()) {
             LobbyData lobbyData = LobbyData.getLobbyData();
 
             if (CCPlugin.getInstance().getServer().getWorld(lobbyData.getWorldName()) != null) {
@@ -33,11 +31,10 @@ public class LobbyCommand implements CommandExecutor {
                         lobbyData.getPitch()));
             }
             else {
-                if (player.isOp()) {
-                    player.sendMessage(CCPlugin.getPrefix() + "Es gibt die Welt mit dem Namen \"" + lobbyData.getWorldName() +"\" nicht...");
-                }
+                if (player.isOp()) player.sendMessage(CCPlugin.getPrefix() + "Es gibt die Welt mit dem Namen \"" + lobbyData.getWorldName() +"\" nicht...");
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

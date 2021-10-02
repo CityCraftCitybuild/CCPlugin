@@ -6,64 +6,72 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class SpeedCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Dieser Befehl geht nur InGame!");
-        } else {
-            Player player = (Player) sender;
+            return true;
+        }
 
-            if (player.hasPermission("mario.speed") || player.isOp()) {
-                try {
-                    float value = Float.parseFloat(args[1]);
-                    if (args.length == 2) {
-                        try {
-                            switch (args[0].toLowerCase()) {
-                                case "fly" -> {
-                                    if (value > 1) {
-                                        player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine kleinere Zahl!");
-                                    } else if (value < -1) {
-                                        player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine größere Zahl!");
-                                    } else {
-                                        player.setFlySpeed(value);
-                                        sender.sendMessage(CCPlugin.getPrefix() + "Dein Fly Speed ist nun: " + value);
-                                    }
+        if (player.hasPermission("mario.speed") || player.isOp()) {
+            try {
+                float value = Float.parseFloat(args[1]);
+                if (args.length == 2) {
+                    try {
+                        switch (args[0].toLowerCase()) {
+                            case "fly" -> {
+                                if (value > 1) {
+                                    player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine kleinere Zahl!");
                                 }
-                                case "walk" -> {
-                                    if (value > 1) {
-                                        player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine kleinere Zahl!");
-                                    } else if (value < -1) {
-                                        player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine größere Zahl!");
-                                    } else {
-                                        player.setWalkSpeed(value);
-                                        sender.sendMessage(CCPlugin.getPrefix() + "Dein Walk Speed ist nun: " + value);
-                                    }
+                                else if (value < -1) {
+                                    player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine größere Zahl!");
                                 }
-                                default -> {
-                                    sendUsage(sender);
-                                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
+                                else {
+                                    player.setFlySpeed(value);
+                                    sender.sendMessage(CCPlugin.getPrefix() + "Dein Fly Speed ist nun: " + value);
                                 }
                             }
-                        } catch (NumberFormatException e) {
-                            sender.sendMessage(CCPlugin.getPrefix() + "Bitte gib eine gültige Zahl an!");
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
-                            e.printStackTrace();
+                            case "walk" -> {
+                                if (value > 1) {
+                                    player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine kleinere Zahl!");
+                                }
+                                else if (value < -1) {
+                                    player.sendMessage(CCPlugin.getPrefix() + "Bitte benutze eine größere Zahl!");
+                                }
+                                else {
+                                    player.setWalkSpeed(value);
+                                    sender.sendMessage(CCPlugin.getPrefix() + "Dein Walk Speed ist nun: " + value);
+                                }
+                            }
+                            default -> {
+                                sendUsage(sender);
+                                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
+                            }
                         }
-                    } else {
-                        sendUsage(sender);
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
+                    catch (NumberFormatException e) {
+                        sender.sendMessage(CCPlugin.getPrefix() + "Bitte gib eine gültige Zahl an!");
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
+                        e.printStackTrace();
+                    }
+                }
+                else {
                     sendUsage(sender);
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
-                    e.printStackTrace();
                 }
-            } else {
-                sender.sendMessage(CCPlugin.getPrefix() + "§cKeine Rechte!");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
             }
+            catch (ArrayIndexOutOfBoundsException e) {
+                sendUsage(sender);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
+                e.printStackTrace();
+            }
+        }
+        else {
+            sender.sendMessage(CCPlugin.getPrefix() + "§cKeine Rechte!");
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
         }
         return false;
     }

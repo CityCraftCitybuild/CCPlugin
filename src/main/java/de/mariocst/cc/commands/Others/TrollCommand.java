@@ -7,18 +7,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public class TrollCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String usage = "/troll <explosion|inventory|thunderstrike|drop>";
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        String usage = "/troll <explosion|inventory|thunderstrike>";
 
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length >= 2) {
                     Player t = CCPlugin.getInstance().getServer().getPlayer(args[1]);
@@ -73,20 +71,7 @@ public class TrollCommand implements CommandExecutor {
 
                                     sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                                 }
-                                case "drop" -> {
-                                    for (int i = 0; i <= 35; i++) {
-                                        if (t.getInventory().getItem(i) != null) {
-                                            t.getWorld().dropItem(t.getLocation(), Objects.requireNonNull(t.getInventory().getItem(i)));
-
-                                            t.getInventory().remove(t.getInventory().getItem(i));
-                                        }
-                                    }
-
-                                    sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " wurde erfolgreich mit Itemdrop getrollt!");
-                                }
-                                default -> {
-                                    sender.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstrike|drop> <Spieler>");
-                                }
+                                default -> sender.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstrike> <Spieler>");
                             }
                         }
                         else {
@@ -108,7 +93,6 @@ public class TrollCommand implements CommandExecutor {
             return false;
         }
 
-        Player player = (Player) sender;
         if (player.hasPermission("mario.troll") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length >= 2) {
@@ -156,19 +140,8 @@ public class TrollCommand implements CommandExecutor {
 
                                     sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                                 }
-                                case "drop" -> {
-                                    for (int i = 0; i <= 35; i++) {
-                                        if (t.getInventory().getItem(i) != null) {
-                                            t.getWorld().dropItem(t.getLocation(), Objects.requireNonNull(t.getInventory().getItem(i)));
-
-                                            t.getInventory().remove(t.getInventory().getItem(i));
-                                        }
-                                    }
-
-                                    sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " wurde erfolgreich mit Itemdrop getrollt!");
-                                }
                                 default -> {
-                                    player.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstrike|drop> <Spieler>");
+                                    player.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstrike> <Spieler>");
                                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                                 }
                             }
@@ -193,7 +166,8 @@ public class TrollCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + usage);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

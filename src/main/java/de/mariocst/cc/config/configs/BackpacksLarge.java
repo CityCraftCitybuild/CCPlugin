@@ -10,22 +10,9 @@ public class BackpacksLarge {
     private final YamlConfiguration backpacksLarge;
 
     public BackpacksLarge() {
-
         File dir = new File("./plugins/CityCraft");
 
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
         this.file = new File(dir, "backpackslarge.yml");
-
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         this.backpacksLarge = YamlConfiguration.loadConfiguration(file);
     }

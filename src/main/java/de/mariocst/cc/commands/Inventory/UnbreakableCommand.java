@@ -13,12 +13,10 @@ import org.jetbrains.annotations.NotNull;
 public class UnbreakableCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage(CCPlugin.getPrefix() + "Bitte führe den Command InGame aus!");
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (player.hasPermission("mario.unbreakable") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {

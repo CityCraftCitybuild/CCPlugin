@@ -1,51 +1,44 @@
 # Die ganzen Welten für /nav
 
 cb01:
-  world_name: cb01 # String
-  x: -42.5 # Double
-  y: 75.0 # Double
-  z: 42.5 # Double
-  pitch: 0.0 # Float
-  yaw: 45.0 # Float
-cb02:
-  world_name: cb02 # String
-  x: -91.5 # Double
-  y: 75.0 # Double
-  z: 91.5 # Double
-  pitch: 0.0 # Float
-  yaw: 45.0 # Float
+  world_name: cb01
+  x: -42.5
+  y: 75.0
+  z: 42.5
+  pitch: 0.0
+  yaw: 45.0
 end:
-  world_name: world_the_end # String
-  x: 8.5 # Double
-  y: 65.0 # Double
-  z: -3.5 # Double
-  pitch: 0.0 # Float
-  yaw: 0.0 # Float
+  world_name: world_the_end
+  x: 8.5
+  y: 65.0
+  z: -3.5
+  pitch: 0.0
+  yaw: 0.0
 farmwelt:
-  world_name: world # String
-  x: -192.5 # Double
-  y: 86.0 # Double
-  z: -191.5 # Double
-  pitch: 0.0 # Float
-  yaw: 0.0 # Float
+  world_name: world
+  x: -192.5
+  y: 86.0
+  z: -191.5
+  pitch: 0.0
+  yaw: 0.0
 ffa:
-  world_name: ffa # String
-  x: 0.0 # Double
-  y: 44.0 # Double
-  z: -1.0 # Double
-  pitch: 0.0 # Float
-  yaw: 90.0 # Float
+  world_name: ffa
+  x: 0.0
+  y: 44.0
+  z: -1.0
+  pitch: 0.0
+  yaw: 90.0
 lobby:
-  world_name: lobby # String
-  x: 22.5 # Double
-  y: 5.0 # Double
-  z: 322.5 # Double
-  pitch: 0.0 # Float
-  yaw: 90.0 # Float
+  world_name: lobby
+  x: 22.5
+  y: 5.0
+  z: 322.5
+  pitch: 0.0
+  yaw: 90.0
 nether:
-  world_name: world_nether # String
-  x: 159.5 # Double
-  y: 59.0 # Double
-  z: 181.5 # Double
-  pitch: 0.0 # Float
-  yaw: 0.0 # Float
+  world_name: world_nether
+  x: 159.5
+  y: 59.0
+  z: 181.5
+  pitch: 0.0
+  yaw: 0.0

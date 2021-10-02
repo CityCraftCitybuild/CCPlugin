@@ -1,9 +1,9 @@
 # Hey, dies ist die Config vom CCPlugin! Hier kannst du alles einstellen.
 
-# Plugin Prefix (String)
+# Plugin Prefix
 prefix: '§8[§6marioCST.de§8] §b'
 staffchatprefix: '§8[§6StaffChat§8] §7%player_name% §8» §6'
 
-# Links (String)
+# Links
 discord: Not in use
 web: Not in use

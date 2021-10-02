@@ -6,11 +6,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class ClearInventoryCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length == 1) {
                     try {
@@ -45,8 +46,7 @@ public class ClearInventoryCommand implements CommandExecutor {
             return false;
         }
 
-        Player player = (Player) sender;
-        if(player.hasPermission("mario.clear") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.clear") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 0) {
                     player.getInventory().clear();
@@ -87,7 +87,8 @@ public class ClearInventoryCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + "/clearinventory [Spieler]");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

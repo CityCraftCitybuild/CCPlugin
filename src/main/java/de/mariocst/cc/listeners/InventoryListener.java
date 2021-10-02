@@ -1,19 +1,12 @@
 package de.mariocst.cc.listeners;
 
 import de.mariocst.cc.CCPlugin;
-import de.mariocst.cc.config.configdata.FFAData;
-import de.mariocst.cc.config.configdata.InventoryData;
 import net.kyori.adventure.text.Component;
-import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.inventory.Inventory;
-
-import java.util.Objects;
 
 public class InventoryListener implements Listener {
     @EventHandler
@@ -21,7 +14,7 @@ public class InventoryListener implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         try {
-            for (Player trolled : CCPlugin.getInstance().invTroll) {
+            for (Player ignored : CCPlugin.getInstance().invTroll) {
                 if (event.getClickedInventory() == player.getInventory()) {
                     event.setCancelled(true);
                 }
@@ -34,9 +27,7 @@ public class InventoryListener implements Listener {
 
     @EventHandler
     public void onDrop(PlayerDropItemEvent event) {
-        Player player = event.getPlayer();
-
-        for (Player trolled : CCPlugin.getInstance().invTroll) {
+        for (Player ignored : CCPlugin.getInstance().invTroll) {
             event.setCancelled(true);
             event.getItemDrop().remove();
         }

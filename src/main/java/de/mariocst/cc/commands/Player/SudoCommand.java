@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class SudoCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length >= 2) {
                     Player t = CCPlugin.getInstance().getServer().getPlayer(args[0]);
@@ -21,20 +21,21 @@ public class SudoCommand implements CommandExecutor {
                         return true;
                     }
 
-                    String msg = "";
-                    for(int i = 2; i < args.length; i++) {
-                        msg = msg + args[i] + " ";
+                    StringBuilder msg = new StringBuilder();
+                    for (int i = 2; i < args.length; i++) {
+                        msg.append(args[i]).append(" ");
                     }
 
                     if (args[1].toLowerCase().startsWith("c:")) {
-                        t.chat(msg.replaceAll("c:", ""));
+                        t.chat(msg.toString().replaceAll("c:", ""));
                         return true;
                     }
 
                     try {
                         sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " hat den Befehl " + msg + " ausgeführt!");
                         t.chat("/" + msg);
-                    } catch (final Exception e) {
+                    }
+                    catch (final Exception e) {
                         sender.sendMessage(CCPlugin.getPrefix() + "Command nicht gefunden: " + msg);
                     }
                 }
@@ -47,8 +48,6 @@ public class SudoCommand implements CommandExecutor {
             }
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (player.hasPermission("mario.sudo") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
@@ -68,20 +67,21 @@ public class SudoCommand implements CommandExecutor {
                         return true;
                     }
 
-                    String msg = "";
-                    for(int i = 1; i < args.length; i++) {
-                        msg = msg + args[i] + " ";
+                    StringBuilder msg = new StringBuilder();
+                    for (int i = 1; i < args.length; i++) {
+                        msg.append(args[i]).append(" ");
                     }
 
                     if (args[1].toLowerCase().startsWith("c:")) {
-                        t.chat(msg.replaceAll("c:", ""));
+                        t.chat(msg.toString().replaceAll("c:", ""));
                         return true;
                     }
 
                     try {
                         player.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " hat den Befehl " + msg + " ausgeführt!");
                         t.chat("/" + msg);
-                    } catch (final Exception e) {
+                    }
+                    catch (final Exception e) {
                         player.sendMessage(CCPlugin.getPrefix() + "Command nicht gefunden: " + msg);
                         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
                     }

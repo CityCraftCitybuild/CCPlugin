@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CB02Data {
-    private static CB02Data cb02Data;
-
     private final Worlds config = CCPlugin.getInstance().getWorldsConfig();
 
     private String worldName;
@@ -17,8 +15,6 @@ public class CB02Data {
     private float yaw, pitch;
 
     public CB02Data() {
-        cb02Data = this;
-
         if (config.getConfig().contains("cb02") && this.config.getConfig().getConfigurationSection("cb02") != null) {
             Map<String, Object> values = Objects.requireNonNull(this.config.getConfig().getConfigurationSection("cb02")).getValues(true);
 
@@ -51,10 +47,7 @@ public class CB02Data {
             for (Map.Entry<String, Object> entry : values.entrySet()) {
                 round++;
 
-                if (round == 7) {
-                    round = 0;
-                    return;
-                }
+                if (round == 7) return;
 
                 switch (entry.getKey().toLowerCase()) {
                     case "world_name" -> this.worldName = entry.getValue().toString();
@@ -109,10 +102,7 @@ public class CB02Data {
             for (Map.Entry<String, Object> entry : values.entrySet()) {
                 round++;
 
-                if (round == 7) {
-                    round = 0;
-                    return;
-                }
+                if (round == 7) return;
 
                 switch (entry.getKey().toLowerCase()) {
                     case "world_name" -> this.worldName = entry.getValue().toString();
@@ -132,10 +122,6 @@ public class CB02Data {
             this.yaw = 90.0F;
             this.pitch = 0.0F;
         }
-    }
-
-    public static CB02Data getCB02Data() {
-        return cb02Data;
     }
 
     public Worlds getConfig() {

@@ -1,7 +1,6 @@
 package de.mariocst.cc.commands.Player;
 
 import de.mariocst.cc.CCPlugin;
-import org.bukkit.Effect;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,12 +13,10 @@ import org.jetbrains.annotations.NotNull;
 public class WeedCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Bitte führe den Command Ingame aus!");
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (player.hasPermission("mario.weed") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             for (PotionEffect effect : player.getActivePotionEffects()) {

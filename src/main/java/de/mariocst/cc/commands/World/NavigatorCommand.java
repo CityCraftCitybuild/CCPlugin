@@ -14,15 +14,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 public class NavigatorCommand implements CommandExecutor {
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!(sender instanceof Player player)) {
+        if (!(sender instanceof Player player)) {
             CCPlugin.getInstance().log("Dieser Command kann leider nur InGame ausgeführt werden!");
             return true;
         }
 
-        if(player.hasPermission("mario.nav") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.nav") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             player.closeInventory();
 
             Inventory inventory = CCPlugin.getInstance().getServer().createInventory(player, 54, Component.text("§cNavigator"));
@@ -96,7 +95,8 @@ public class NavigatorCommand implements CommandExecutor {
             }
 
             player.openInventory(inventory);
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }

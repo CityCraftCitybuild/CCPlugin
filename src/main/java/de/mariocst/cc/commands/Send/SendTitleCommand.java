@@ -15,8 +15,7 @@ import java.time.Duration;
 public class SendTitleCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-
-        if(!(sender instanceof Player player)) {
+        if (!(sender instanceof Player player)) {
             try {
                 if (args.length >= 2) {
                     Player t = CCPlugin.getInstance().getServer().getPlayer(args[0]);
@@ -24,7 +23,7 @@ public class SendTitleCommand implements CommandExecutor {
                     try {
                         if (t != null) {
                             StringBuilder msg = new StringBuilder();
-                            for(int i = 1; i < args.length; i++) {
+                            for (int i = 1; i < args.length; i++) {
                                 msg.append(args[i]).append(" ");
                             }
 
@@ -43,7 +42,7 @@ public class SendTitleCommand implements CommandExecutor {
             return true;
         }
 
-        if(player.hasPermission("mario.sendtitle") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.sendtitle") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length >= 2) {
                     Player t = player.getServer().getPlayer(args[0]);
@@ -51,7 +50,7 @@ public class SendTitleCommand implements CommandExecutor {
                     try {
                         if (t != null) {
                             StringBuilder msg = new StringBuilder();
-                            for(int i = 1; i < args.length; i++) {
+                            for (int i = 1; i < args.length; i++) {
                                 msg.append(args[i]).append(" ");
                             }
 
@@ -69,7 +68,8 @@ public class SendTitleCommand implements CommandExecutor {
                 player.sendMessage(CCPlugin.getPrefix() + "/st <Spieler> <Titel>");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
             }
-        } else {
+        }
+        else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
         }
