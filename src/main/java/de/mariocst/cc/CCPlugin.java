@@ -21,7 +21,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -310,7 +309,7 @@ public final class CCPlugin extends JavaPlugin {
 
         File newDir = new File("./plugins/CityCraft");
 
-        for (File file : Objects.requireNonNull(dir.listFiles())) {
+        for (File ignored1 : Objects.requireNonNull(dir.listFiles())) {
             try {
                 Files.copy(dir.toPath(), newDir.toPath());
             }
