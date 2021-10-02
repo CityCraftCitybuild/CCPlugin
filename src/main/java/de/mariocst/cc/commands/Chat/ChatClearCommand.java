@@ -2,6 +2,7 @@ package de.mariocst.cc.commands.Chat;
 
 import de.mariocst.cc.CCPlugin;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,7 +35,9 @@ public class ChatClearCommand implements CommandExecutor {
                 }
             }
 
-            CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + player.displayName() + " hat den Chat gecleart!"));
+            TextComponent disName = (TextComponent) player.displayName();
+
+            CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + disName.content() + " hat den Chat gecleart!"));
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
