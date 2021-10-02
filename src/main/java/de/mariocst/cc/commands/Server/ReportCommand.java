@@ -34,12 +34,12 @@ public class ReportCommand implements CommandExecutor {
                                 if (staff.hasPermission("mario.staff") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
                                     staffOnline++;
 
-                                    staff.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + player.getName() + " hat §a" + t.getName() + " §ffür §a" + msg + " §freportet!");
+                                    staff.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + player.getName() + " hat §a" + t.getName() + " §ffür §a" + msg + "§freportet!");
                                 }
                             }
 
                             if (staffOnline > 0) {
-                                player.sendMessage(CCPlugin.getPrefix() + "Du hast den Spieler §a" + t.getName() + " §ffür §a" + msg + " §ferfolgreich reportet!");
+                                player.sendMessage(CCPlugin.getPrefix() + "Du hast den Spieler §a" + t.getName() + " §ffür §a" + msg + "§ferfolgreich reportet!");
                             }
                             else {
                                 player.sendMessage(CCPlugin.getPrefix() + "§cEs ist kein Teammitglied Online!");

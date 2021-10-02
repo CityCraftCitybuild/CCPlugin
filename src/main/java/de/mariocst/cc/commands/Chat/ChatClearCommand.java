@@ -35,9 +35,7 @@ public class ChatClearCommand implements CommandExecutor {
                 }
             }
 
-            TextComponent disName = (TextComponent) player.displayName();
-
-            CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + disName.content() + " hat den Chat gecleart!"));
+            CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + player.getName() + " hat den Chat gecleart!"));
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
