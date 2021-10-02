@@ -22,9 +22,7 @@ public class QuitListener implements Listener {
         CCPlugin.getInstance().getLogger().warning(player.getName() + " left the game!");
 
         for (Player player1 : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
-            if (player1.isOp() && player != player1) {
-                player1.sendMessage(CCPlugin.getPrefix() + player.getName() + " hat den Server verlassen!");
-            }
+            player1.sendMessage(CCPlugin.getPrefix() + player.getName() + " hat den Server verlassen!");
         }
 
         if (player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName())) {

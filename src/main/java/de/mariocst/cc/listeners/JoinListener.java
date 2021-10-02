@@ -25,9 +25,7 @@ public class JoinListener implements Listener {
         CCPlugin.getInstance().getLogger().warning(player.getName() + " joined the game!");
 
         for (Player player1 : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
-            if (player1.isOp() && player != player1) {
-                player1.sendMessage(CCPlugin.getPrefix() + player.getName() + " ist dem Server beigetreten!");
-            }
+            player1.sendMessage(CCPlugin.getPrefix() + player.getName() + " ist dem Server beigetreten!");
         }
 
         if (player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName())) {
