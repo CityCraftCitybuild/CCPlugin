@@ -16,11 +16,13 @@ public class ChatListener implements Listener {
         if (CCPlugin.getInstance().staffChat.contains(player)) {
             event.setCancelled(true);
 
-            CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + event.message().toString().replaceAll("&", "§"));
+            TextComponent component = (TextComponent) event.message();
+
+            CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + component.toString().replaceAll("&", "§"));
 
             for (Player staff : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("mario.staff") || staff.hasPermission("mario.*") || staff.hasPermission("*") || staff.isOp()) {
-                    staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + event.message().toString().replaceAll("&", "§"));
+                    staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + component.toString().replaceAll("&", "§"));
                 }
             }
         }
