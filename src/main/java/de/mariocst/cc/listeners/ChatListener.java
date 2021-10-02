@@ -18,11 +18,11 @@ public class ChatListener implements Listener {
 
             TextComponent component = (TextComponent) event.message();
 
-            CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + component.toString().replaceAll("&", "§"));
+            CCPlugin.getInstance().log(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + component.content().replaceAll("&", "§"));
 
             for (Player staff : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("mario.staff") || staff.hasPermission("mario.*") || staff.hasPermission("*") || staff.isOp()) {
-                    staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + component.toString().replaceAll("&", "§"));
+                    staff.sendMessage(CCPlugin.getInstance().getStaffChatPrefix().getPlayerPrefix(player) + component.content().replaceAll("&", "§"));
                 }
             }
         }
@@ -32,6 +32,6 @@ public class ChatListener implements Listener {
     public void onNothingChat(BroadcastMessageEvent event) {
         TextComponent component = (TextComponent) event.message();
 
-        if (component.toString().equals("")) event.setCancelled(true);
+        if (component.content().equals("")) event.setCancelled(true);
     }
 }
