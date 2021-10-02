@@ -46,7 +46,6 @@ public final class CCPlugin extends JavaPlugin {
     private WebLink webLink;
     private FlyWorlds flyWorlds;
     private CB01Data cb01Data;
-    private CB02Data cb02Data;
     private EndData endData;
     private FarmweltData farmweltData;
     private FFAData ffaData;
@@ -81,7 +80,6 @@ public final class CCPlugin extends JavaPlugin {
         webLink = new WebLink();
         flyWorlds = new FlyWorlds();
         cb01Data = new CB01Data();
-        cb02Data = new CB02Data();
         endData = new EndData();
         farmweltData = new FarmweltData();
         ffaData = new FFAData();
@@ -155,7 +153,6 @@ public final class CCPlugin extends JavaPlugin {
         webLink.save();
         flyWorlds.save();
         cb01Data.save();
-        cb02Data.save();
         endData.save();
         farmweltData.save();
         ffaData.save();
@@ -186,7 +183,6 @@ public final class CCPlugin extends JavaPlugin {
         webLink = new WebLink();
         flyWorlds = new FlyWorlds();
         cb01Data = new CB01Data();
-        cb02Data = new CB02Data();
         endData = new EndData();
         farmweltData = new FarmweltData();
         ffaData = new FFAData();
@@ -200,10 +196,6 @@ public final class CCPlugin extends JavaPlugin {
 
     public void log(String text) {
         this.getServer().getLogger().info(getPrefix() + text);
-    }
-
-    public void warning(String text) {
-        this.getServer().getLogger().warning(getPrefix() + text);
     }
 
     private void register() {
