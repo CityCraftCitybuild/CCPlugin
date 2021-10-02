@@ -25,7 +25,7 @@ public class ReportCommand implements CommandExecutor {
 
                         if (t != null) {
                             if (t.getName().equals("marioCST")) {
-                                player.kick(Component.text("§4Würd' mir stinken, wen ich du wäre"));
+                                player.kick(Component.text("§4Würd' mir stinken, wenn ich du wäre"));
                                 return false;
                             }
 
