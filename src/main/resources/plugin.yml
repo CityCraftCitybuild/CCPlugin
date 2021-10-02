@@ -195,6 +195,10 @@ commands:
     description: Gehe in die Nether Welt!
     aliases: [ "ne" ]
     permission: mario.nether
+  onlineplayers:
+    description: Wer ist alles Online?
+    aliases: [ "oplayers" ]
+    permission: mario.onlineplayers
 
 permissions:
   mario.*:
@@ -251,6 +255,7 @@ permissions:
       mario.farmwelt: true
       mario.ffa: true
       mario.nether: true
+      mario.onlineplayers: true
   mario.heal:
     description: Rechte für den /heal Command!
     default: op
@@ -420,4 +425,7 @@ permissions:
     default: op
   mario.nether:
     description: Rechte für den /nether Command!
+    default: op
+  mario.onlineplayers:
+    description: Rechte für den /onlineplayers Command!
     default: op

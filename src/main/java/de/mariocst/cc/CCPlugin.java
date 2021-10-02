@@ -242,6 +242,7 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("banall")).setExecutor(new BanAllCommand());
         Objects.requireNonNull(getCommand("config")).setExecutor(new ConfigCommand());
         Objects.requireNonNull(getCommand("kickall")).setExecutor(new KickAllCommand());
+        Objects.requireNonNull(getCommand("onlineplayers")).setExecutor(new OnlinePlayersCommand());
         Objects.requireNonNull(getCommand("report")).setExecutor(new ReportCommand());
         Objects.requireNonNull(getCommand("staffchat")).setExecutor(new StaffChatCommand());
 
