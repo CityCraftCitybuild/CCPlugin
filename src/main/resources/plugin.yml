@@ -4,6 +4,7 @@ main: de.mariocst.cc.CCPlugin
 api-version: 1.17
 authors: [marioCST]
 description: CityCraft Plugin für 1.17.1
+depend: [floodgate]
 
 commands:
   heal:
