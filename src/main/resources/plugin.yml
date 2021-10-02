@@ -177,6 +177,24 @@ commands:
   sudo:
     description: Führe Commands als ein anderer Spieler aus!
     permission: mario.sudo
+  cb:
+    description: Gehe zur CityBuild Welt!
+    aliases: [ "citybuild" ]
+    permission: mario.cb
+  end:
+    description: Gehe zur End Welt!
+    permission: mario.end
+  farmwelt:
+    description: Gehe zur Farmwelt!
+    aliases: [ "fw" ]
+    permission: mario.farmwelt
+  ffa:
+    description: Gehe zur FFA Welt!
+    permission: mario.ffa
+  nether:
+    description: Gehe in die Nether Welt!
+    aliases: [ "ne" ]
+    permission: mario.nether
 
 permissions:
   mario.*:
@@ -228,6 +246,11 @@ permissions:
       mario.unbreakable: true
       mario.weed: true
       mario.sudo: true
+      mario.cb: true
+      mario.end: true
+      mario.farmwelt: true
+      mario.ffa: true
+      mario.nether: true
   mario.heal:
     description: Rechte für den /heal Command!
     default: op
@@ -383,3 +406,18 @@ permissions:
       mario.sudo.bypass:
         description: Werde nicht von Sudo kontrolliert!
         default: op
+  mario.cb:
+    description: Rechte für den /cb Command!
+    default: op
+  mario.end:
+    description: Rechte für den /end Command!
+    default: op
+  mario.farmwelt:
+    description: Rechte für den /farmwelt Command!
+    default: op
+  mario.ffa:
+    description: Rechte für den /ffa Command!
+    default: op
+  mario.nether:
+    description: Rechte für den /nether Command!
+    default: op
