@@ -141,6 +141,7 @@ public final class CCPlugin extends JavaPlugin {
         pluginManager.registerEvents(new GodmodeListener(), this);
         pluginManager.registerEvents(new InventoryListener(), this);
         pluginManager.registerEvents(new JoinListener(), this);
+        pluginManager.registerEvents(new KickListener(), this);
         pluginManager.registerEvents(new NavigatorListener(), this);
         pluginManager.registerEvents(new QuitListener(), this);
         pluginManager.registerEvents(new WorldChangeListener(), this);
