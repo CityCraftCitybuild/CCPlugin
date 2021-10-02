@@ -13,8 +13,12 @@ public class ChatClearCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            for (int i = 0; i <= 200; i++) {
-                CCPlugin.getInstance().getServer().broadcast(Component.text("   "));
+            for (Player cleared : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
+                if (!cleared.hasPermission("mario.chatclear.bypass") && !cleared.hasPermission("mario.*") && !cleared.hasPermission("*") && !cleared.isOp()) {
+                    for (int i = 0; i <= 200; i++) {
+                        cleared.sendMessage(Component.text("   "));
+                    }
+                }
             }
 
             CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Die Konsole hat den Chat gecleart!"));
@@ -22,8 +26,12 @@ public class ChatClearCommand implements CommandExecutor {
         }
 
         if (player.hasPermission("mario.chatclear") || player.hasPermission("*") || player.isOp()) {
-            for (int i = 0; i <= 200; i++) {
-                CCPlugin.getInstance().getServer().broadcast(Component.text("   "));
+            for (Player cleared : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
+                if (!cleared.hasPermission("mario.chatclear.bypass") && !cleared.hasPermission("mario.*") && !cleared.hasPermission("*") && !cleared.isOp()) {
+                    for (int i = 0; i <= 200; i++) {
+                        cleared.sendMessage(Component.text("   "));
+                    }
+                }
             }
 
             CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + player.displayName() + " hat den Chat gecleart!"));

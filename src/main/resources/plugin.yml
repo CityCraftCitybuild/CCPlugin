@@ -257,6 +257,10 @@ permissions:
   mario.chatclear:
     description: Rechte für den /chatclear Command!
     default: op
+    children:
+      mario.chatclear.bypass:
+        description: Bypass chat clear!
+        default: op
   mario.clear:
     description: Rechte für den /clearinventory Command!
     default: op
