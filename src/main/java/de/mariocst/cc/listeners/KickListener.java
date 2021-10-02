@@ -15,6 +15,6 @@ public class KickListener implements Listener {
 
         TextComponent component = (TextComponent) event.reason();
 
-        CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler " + player.getName() + " wurde für " + component.content() + " gekickt!"));
+        CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgekickt!"));
     }
 }
