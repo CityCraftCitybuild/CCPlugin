@@ -13,8 +13,11 @@ public class KickListener implements Listener {
     public void onKick(PlayerKickEvent event) {
         Player player = event.getPlayer();
 
-        TextComponent component = (TextComponent) event.reason();
+        try {
+            TextComponent component = (TextComponent) event.reason();
 
-        CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgekickt!"));
+            CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgekickt!"));
+        }
+        catch (ClassCastException ignored) { }
     }
 }
