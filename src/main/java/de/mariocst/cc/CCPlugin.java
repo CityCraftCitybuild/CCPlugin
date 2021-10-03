@@ -13,7 +13,9 @@ import de.mariocst.cc.commands.Storing.*;
 import de.mariocst.cc.commands.World.*;
 import de.mariocst.cc.config.configdata.*;
 import de.mariocst.cc.config.configs.*;
+import de.mariocst.cc.forms.NavigatorForm;
 import de.mariocst.cc.listeners.*;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -54,6 +56,9 @@ public final class CCPlugin extends JavaPlugin {
     public List<Player> invTroll = new ArrayList<>();
     public List<Player> staffChat = new ArrayList<>();
     public List<Player> godmode = new ArrayList<>();
+
+    @Getter
+    public NavigatorForm navigatorForm;
 
     @Override
     public void onLoad() {
@@ -200,29 +205,29 @@ public final class CCPlugin extends JavaPlugin {
     }
 
     private void register() {
-        //Chat
+        // Chat
         Objects.requireNonNull(getCommand("broadcast")).setExecutor(new BroadcastCommand());
         Objects.requireNonNull(getCommand("chatclear")).setExecutor(new ChatClearCommand());
         Objects.requireNonNull(getCommand("colorcodes")).setExecutor(new ColorCodesCommand());
 
-        //Inventory
+        // Inventory
         Objects.requireNonNull(getCommand("backpack")).setExecutor(new BackpackCommand());
         Objects.requireNonNull(getCommand("backpacklarge")).setExecutor(new BackpackLargeCommand());
         Objects.requireNonNull(getCommand("clearenderchest")).setExecutor(new ClearEnderChestCommand());
         Objects.requireNonNull(getCommand("clearinventory")).setExecutor(new ClearInventoryCommand());
         Objects.requireNonNull(getCommand("unbreakable")).setExecutor(new UnbreakableCommand());
 
-        //Invsee
+        // Invsee
         Objects.requireNonNull(getCommand("enderinvsee")).setExecutor(new EnderInvseeCommand());
         Objects.requireNonNull(getCommand("invsee")).setExecutor(new InvseeCommand());
 
-        //Others
+        // Others
         Objects.requireNonNull(getCommand("discord")).setExecutor(new DiscordCommand());
         Objects.requireNonNull(getCommand("enderchest")).setExecutor(new ECCommand());
         Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
         Objects.requireNonNull(getCommand("web")).setExecutor(new WebCommand());
 
-        //Player
+        // Player
         Objects.requireNonNull(getCommand("die")).setExecutor(new DieCommand());
         Objects.requireNonNull(getCommand("feed")).setExecutor(new FeedCommand());
         Objects.requireNonNull(getCommand("fly")).setExecutor(new FlyCommand());
@@ -233,12 +238,12 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("sudo")).setExecutor(new SudoCommand());
         Objects.requireNonNull(getCommand("weed")).setExecutor(new WeedCommand());
 
-        //Send
+        // Send
         Objects.requireNonNull(getCommand("sendactionbar")).setExecutor(new SendActionBarCommand());
         Objects.requireNonNull(getCommand("sendmessage")).setExecutor(new SendMessageCommand());
         Objects.requireNonNull(getCommand("sendtitle")).setExecutor(new SendTitleCommand());
 
-        //Server
+        // Server
         Objects.requireNonNull(getCommand("banall")).setExecutor(new BanAllCommand());
         Objects.requireNonNull(getCommand("config")).setExecutor(new ConfigCommand());
         Objects.requireNonNull(getCommand("kickall")).setExecutor(new KickAllCommand());
@@ -246,18 +251,18 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("report")).setExecutor(new ReportCommand());
         Objects.requireNonNull(getCommand("staffchat")).setExecutor(new StaffChatCommand());
 
-        //Setter
+        // Setter
         Objects.requireNonNull(getCommand("setlink")).setExecutor(new SetLinkCommand());
         Objects.requireNonNull(getCommand("setprefix")).setExecutor(new SetPrefixCommand());
 
-        //Storing
+        // Storing
         Objects.requireNonNull(getCommand("backpackstored")).setExecutor(new BackpackStoredCommand());
         Objects.requireNonNull(getCommand("ffaarmor")).setExecutor(new FFAArmorCommand());
         Objects.requireNonNull(getCommand("ffainventory")).setExecutor(new FFAInventoryCommand());
         Objects.requireNonNull(getCommand("restoreinventory")).setExecutor(new RestoreInventoryCommand());
         Objects.requireNonNull(getCommand("storeinventory")).setExecutor(new StoreInventoryCommand());
 
-        //World
+        // World
         Objects.requireNonNull(getCommand("cb")).setExecutor(new CBCommand());
         Objects.requireNonNull(getCommand("day")).setExecutor(new DayCommand());
         Objects.requireNonNull(getCommand("end")).setExecutor(new EndCommand());
@@ -270,6 +275,9 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("navigator")).setExecutor(new NavigatorCommand());
         Objects.requireNonNull(getCommand("nether")).setExecutor(new NetherCommand());
         Objects.requireNonNull(getCommand("night")).setExecutor(new NightCommand());
+
+        // Forms
+        this.navigatorForm = new NavigatorForm();
     }
 
     public static CCPlugin getInstance() {
