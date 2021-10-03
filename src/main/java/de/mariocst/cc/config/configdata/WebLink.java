@@ -21,17 +21,6 @@ public class WebLink {
         }
     }
 
-    public void reload() {
-        Config config = CCPlugin.getInstance().getConfiguration();
-
-        if (config.getConfig().contains("web")) {
-            this.link = config.getConfig().getString("web");
-        }
-        else {
-            this.link = "Not in use";
-        }
-    }
-
     public static WebLink getWebLink() {
         return webLink;
     }

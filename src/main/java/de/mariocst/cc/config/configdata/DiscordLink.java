@@ -21,17 +21,6 @@ public class DiscordLink {
         }
     }
 
-    public void reload() {
-        Config config = CCPlugin.getInstance().getConfiguration();
-
-        if (config.getConfig().contains("discord")) {
-            this.link = config.getConfig().getString("discord");
-        }
-        else {
-            this.link = "Not in use";
-        }
-    }
-
     public static DiscordLink getDiscordLink() {
         return discordLink;
     }

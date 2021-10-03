@@ -19,17 +19,6 @@ public class StaffChatPrefix {
         }
     }
 
-    public void reload() {
-        Config config = CCPlugin.getInstance().getConfiguration();
-
-        if (config.getConfig().contains("staffchatprefix")) {
-            this.prefix = config.getConfig().getString("staffchatprefix");
-        }
-        else {
-            this.prefix = "§8[§6StaffChat§8] §7%player_name% §8» §6";
-        }
-    }
-
     public String getPlayerPrefix(Player player) {
         TextComponent component = (TextComponent) player.displayName();
         String disName = component.toString();

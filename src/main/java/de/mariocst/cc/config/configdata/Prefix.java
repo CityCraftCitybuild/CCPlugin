@@ -23,19 +23,6 @@ public class Prefix {
         CCPlugin.setPrefix(this.prefix);
     }
 
-    public void reload() {
-        Config config = CCPlugin.getInstance().getConfiguration();
-
-        if (config.getConfig().contains("prefix")) {
-            this.prefix = config.getConfig().getString("prefix");
-        }
-        else {
-            this.prefix = "§8[§6marioCST.de§8] §b";
-        }
-
-        CCPlugin.setPrefix(this.prefix);
-    }
-
     public static Prefix getPrefixClass() {
         return prefixClass;
     }

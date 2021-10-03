@@ -24,17 +24,6 @@ public class FlyWorlds {
         }
     }
 
-    public void reload() {
-        Config config = CCPlugin.getInstance().getConfiguration();
-
-        if (config.getConfig().contains("flyWorlds") && config.getConfig().getConfigurationSection("flyWorlds") != null) {
-            worlds.addAll(config.getConfig().getStringList("flyWorlds"));
-        }
-        else {
-            worlds.add("world");
-        }
-    }
-
     public static FlyWorlds getFlyWorlds() {
         return flyWorlds;
     }
