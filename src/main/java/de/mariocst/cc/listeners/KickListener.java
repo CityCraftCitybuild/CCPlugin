@@ -16,7 +16,12 @@ public class KickListener implements Listener {
         try {
             TextComponent component = (TextComponent) event.reason();
 
-            CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgekickt!"));
+            switch (event.getCause()) {
+                case KICK_COMMAND -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgekickt!"));
+                case BANNED -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgebannt!"));
+                case IP_BANNED -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fIP gebannt!"));
+                case FLYING_PLAYER -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für fliegen gekickt!"));
+            }
         }
         catch (ClassCastException ignored) { }
     }
