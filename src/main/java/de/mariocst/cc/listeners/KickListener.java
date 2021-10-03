@@ -21,6 +21,7 @@ public class KickListener implements Listener {
                 case BANNED -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fgebannt!"));
                 case IP_BANNED -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für §a" + component.content() + " §fIP gebannt!"));
                 case FLYING_PLAYER -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für fliegen gekickt!"));
+                case TIMEOUT -> CCPlugin.getInstance().getServer().broadcast(Component.text(CCPlugin.getPrefix() + "Der Spieler §a" + player.getName() + " §fwurde für Time Out gekickt!"));
             }
         }
         catch (ClassCastException ignored) { }
