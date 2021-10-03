@@ -14,7 +14,6 @@ import de.mariocst.cc.commands.World.*;
 import de.mariocst.cc.config.configdata.*;
 import de.mariocst.cc.config.configs.*;
 import de.mariocst.cc.listeners.*;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +24,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
 
 public final class CCPlugin extends JavaPlugin {
     private static String prefix;

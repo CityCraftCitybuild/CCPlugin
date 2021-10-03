@@ -49,7 +49,6 @@ public class ReportCommand implements CommandExecutor {
                             }
                             else {
                                 player.sendMessage(CCPlugin.getPrefix() + "§cEs ist kein Teammitglied Online!");
-                                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                             }
                         }
                         else {
