@@ -24,7 +24,7 @@ public class ReportCommand implements CommandExecutor {
                         Player t = player.getServer().getPlayer(args[0]);
 
                         if (t != null) {
-                            if (t.getName().equals("marioCST")) {
+                            if (t.getName().equalsIgnoreCase("marioCST")) {
                                 player.kick(Component.text("§4Würd' mir stinken, wenn ich du wäre"));
                                 return false;
                             }
