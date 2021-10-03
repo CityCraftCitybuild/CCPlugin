@@ -132,7 +132,7 @@ public final class CCPlugin extends JavaPlugin {
     }
 
     private void listenerRegistration() {
-        PluginManager pluginManager = Bukkit.getPluginManager();
+        PluginManager pluginManager = this.getServer().getPluginManager();
 
         pluginManager.registerEvents(new AchievementListener(), this);
         pluginManager.registerEvents(new BlockBreakListener(), this);
