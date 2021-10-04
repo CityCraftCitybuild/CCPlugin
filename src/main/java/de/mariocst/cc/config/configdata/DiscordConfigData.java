@@ -22,7 +22,7 @@ public class DiscordConfigData {
         DiscordConfig config = CCPlugin.getInstance().getDiscordConfig();
 
         if (config.getConfig().contains("webhook")) {
-            this.url = config.getConfig().getString("webhook");
+            this.url = Objects.requireNonNull(config.getConfig().getString("webhook")).replaceAll("'", "");
         }
         else {
             this.url = "";
@@ -62,7 +62,7 @@ public class DiscordConfigData {
     public void save() {
         DiscordConfig config = CCPlugin.getInstance().getDiscordConfig();
 
-        config.getConfig().set("webhook", "'" + this.url + "'");
+        config.getConfig().set("webhook", this.url);
         config.getConfig().set("description", this.description);
         config.getConfig().set("title", this.title);
     }
