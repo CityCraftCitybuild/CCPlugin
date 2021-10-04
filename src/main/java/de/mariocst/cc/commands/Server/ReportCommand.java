@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+
 public class ReportCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
@@ -48,7 +50,13 @@ public class ReportCommand implements CommandExecutor {
                             }
 
                             if (!DiscordConfigData.getDiscordConfigData().getUrl().equals("")) {
-                                CCPlugin.getInstance().sendReport(player, t, msg.toString());
+                                try {
+                                    CCPlugin.getInstance().sendReport(player, t, msg.toString());
+                                    player.sendMessage(CCPlugin.getPrefix() + "Dein Report wurde erfolgreich an das Discord Team gesendet!");
+                                }
+                                catch (IOException e) {
+                                    player.sendMessage(CCPlugin.getPrefix() + "Dein Report konnte leider nicht an das Discord Team gesendet werden, weil ein Fehler aufgetreten ist.");
+                                }
                             }
                         }
                         else {

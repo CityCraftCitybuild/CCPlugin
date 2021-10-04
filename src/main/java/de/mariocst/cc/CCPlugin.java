@@ -317,7 +317,7 @@ public final class CCPlugin extends JavaPlugin {
         return staffChatPrefix;
     }
 
-    public void sendReport(Player player, Player reported, String reason) {
+    public void sendReport(Player player, Player reported, String reason) throws IOException {
         DiscordWebhook webhook = new DiscordWebhook(discordConfigData.getUrl());
 
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
