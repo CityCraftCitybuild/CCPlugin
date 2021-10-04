@@ -10,8 +10,8 @@
     <packaging>jar</packaging>
 
     <name>CCPlugin</name>
-
     <description>CityCraft Plugin for 1.17.1</description>
+
     <properties>
         <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
