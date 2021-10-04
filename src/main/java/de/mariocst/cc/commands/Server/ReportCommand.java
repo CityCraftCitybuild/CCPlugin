@@ -1,6 +1,7 @@
 package de.mariocst.cc.commands.Server;
 
 import de.mariocst.cc.CCPlugin;
+import de.mariocst.cc.config.configdata.DiscordConfigData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -24,11 +25,6 @@ public class ReportCommand implements CommandExecutor {
                         Player t = player.getServer().getPlayer(args[0]);
 
                         if (t != null) {
-                            if (t.getName().equalsIgnoreCase("marioCST")) {
-                                player.kick(Component.text("§4Würd' mir stinken, wenn ich du wäre"));
-                                return false;
-                            }
-
                             StringBuilder msg = new StringBuilder();
                             for (int i = 1; i < args.length; i++) {
                                 msg.append(args[i]).append(" ");
@@ -49,6 +45,10 @@ public class ReportCommand implements CommandExecutor {
                             }
                             else {
                                 player.sendMessage(CCPlugin.getPrefix() + "§cEs ist kein Teammitglied Online!");
+                            }
+
+                            if (!DiscordConfigData.getDiscordConfigData().getUrl().equals("")) {
+                                CCPlugin.getInstance().sendReport(player, t, msg.toString());
                             }
                         }
                         else {

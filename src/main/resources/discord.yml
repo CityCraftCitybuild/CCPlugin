@@ -1,0 +1,10 @@
+# Discord configurations for Report
+
+# Webhook, '' for empty
+webhook: ''
+
+# Description from Embed
+description: Ein Spieler hat jemanden reported!
+
+# Title from Embed
+title: Report

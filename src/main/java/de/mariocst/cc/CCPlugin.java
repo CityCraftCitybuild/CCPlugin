@@ -15,14 +15,14 @@ import de.mariocst.cc.config.configdata.*;
 import de.mariocst.cc.config.configs.*;
 import de.mariocst.cc.forms.NavigatorForm;
 import de.mariocst.cc.listeners.*;
+import de.mariocst.cc.webhook.DiscordWebhook;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,6 +36,7 @@ public final class CCPlugin extends JavaPlugin {
     private BackpackManagerStored backpackManagerStored;
     private InventoryDataManager inventoryDataManager;
     private Worlds worlds;
+    private DiscordConfig discordConfig;
     private Config config;
     private Backpacks backpacks;
     private BackpacksLarge backpacksLarge;
@@ -52,6 +53,7 @@ public final class CCPlugin extends JavaPlugin {
     private FFAData ffaData;
     private LobbyData lobbyData;
     private NetherData netherData;
+    private DiscordConfigData discordConfigData;
 
     public List<Player> invTroll = new ArrayList<>();
     public List<Player> staffChat = new ArrayList<>();
@@ -63,13 +65,13 @@ public final class CCPlugin extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        copyOldFiles();
 
         backpacks = new Backpacks();
         backpacksLarge = new BackpacksLarge();
         backpacksStored = new BackpacksStored();
         inventories = new Inventories();
         worlds = new Worlds();
+        discordConfig = new DiscordConfig();
         config = new Config();
     }
 
@@ -89,10 +91,13 @@ public final class CCPlugin extends JavaPlugin {
         ffaData = new FFAData();
         lobbyData = new LobbyData();
         netherData = new NetherData();
+        discordConfigData = new DiscordConfigData();
         backpackManager = new BackpackManager();
         backpackManagerLarge = new BackpackManagerLarge();
         backpackManagerStored = new BackpackManagerStored();
         inventoryDataManager = new InventoryDataManager();
+
+        if (discordConfigData.getUrl().equals("")) this.log("Es ist kein Webhook Link angegeben!");
 
         log("CityCraft Plugin geladen!");
     }
@@ -105,6 +110,10 @@ public final class CCPlugin extends JavaPlugin {
 
     public Config getConfiguration() {
         return config;
+    }
+
+    public DiscordConfig getDiscordConfig() {
+        return discordConfig;
     }
 
     public Worlds getWorldsConfig() {
@@ -164,6 +173,7 @@ public final class CCPlugin extends JavaPlugin {
         ffaData.save();
         lobbyData.save();
         netherData.save();
+        discordConfigData.save();
         backpackManager.save();
         backpackManagerLarge.save();
         backpackManagerStored.save();
@@ -173,6 +183,7 @@ public final class CCPlugin extends JavaPlugin {
         backpacksStored.save();
         inventories.save();
         worlds.save();
+        discordConfig.save();
         config.save();
     }
 
@@ -182,6 +193,7 @@ public final class CCPlugin extends JavaPlugin {
         backpacksStored = new BackpacksStored();
         inventories = new Inventories();
         worlds = new Worlds();
+        discordConfig = new DiscordConfig();
         config = new Config();
         prefixConfig = new Prefix();
         staffChatPrefix = new StaffChatPrefix();
@@ -194,6 +206,7 @@ public final class CCPlugin extends JavaPlugin {
         ffaData = new FFAData();
         lobbyData = new LobbyData();
         netherData = new NetherData();
+        discordConfigData = new DiscordConfigData();
         backpackManager = new BackpackManager();
         backpackManagerLarge = new BackpackManagerLarge();
         backpackManagerStored = new BackpackManagerStored();
@@ -304,18 +317,22 @@ public final class CCPlugin extends JavaPlugin {
         return staffChatPrefix;
     }
 
-    private void copyOldFiles() {
-        File dir = new File("./plugins/CookieCraft");
+    public void sendReport(Player player, Player reported, String reason) {
+        DiscordWebhook webhook = new DiscordWebhook(discordConfigData.getUrl());
 
-        if (dir.listFiles() == null) return;
+        webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                .setTitle(discordConfigData.getTitle())
+                .setDescription(discordConfigData.getDescription())
+                .addField("Spieler", player.getName(), false)
+                .addField("Reported", reported.getName(), false)
+                .addField("Grund", reason, false)
+                .setColor(Color.RED));
 
-        File newDir = new File("./plugins/CityCraft");
-
-        for (File ignored1 : Objects.requireNonNull(dir.listFiles())) {
-            try {
-                Files.copy(dir.toPath(), newDir.toPath());
-            }
-            catch (IOException ignored) { }
+        try {
+            webhook.execute();
+        }
+        catch (IOException e) {
+            this.getServer().getLogger().severe(e.getLocalizedMessage());
         }
     }
 }
