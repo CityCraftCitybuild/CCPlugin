@@ -2,15 +2,17 @@ package de.mariocst.cc.commands.Server;
 
 import de.mariocst.cc.CCPlugin;
 import de.mariocst.cc.config.configdata.DiscordConfigData;
-import net.kyori.adventure.text.Component;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.geysermc.floodgate.api.FloodgateApi;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ReportCommand implements CommandExecutor {
     @Override
@@ -21,10 +23,23 @@ public class ReportCommand implements CommandExecutor {
         }
 
         if (player.hasPermission("mario.report") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+            if (FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) {
+                CCPlugin.getInstance().reportForm.openReport(player);
+                return true;
+            }
+
             try {
                 if (args.length >= 2) {
                     try {
                         Player t = player.getServer().getPlayer(args[0]);
+
+                        OfflinePlayer oT = null;
+
+                        for (OfflinePlayer offlinePlayer : CCPlugin.getInstance().getServer().getOfflinePlayers()) {
+                            if (Objects.equals(offlinePlayer.getName(), args[0])) {
+                                oT = offlinePlayer;
+                            }
+                        }
 
                         if (t != null) {
                             StringBuilder msg = new StringBuilder();
@@ -42,16 +57,43 @@ public class ReportCommand implements CommandExecutor {
                                 }
                             }
 
-                            if (staffOnline > 0) {
-                                player.sendMessage(CCPlugin.getPrefix() + "Du hast den Spieler §a" + t.getName() + " §ffür §a" + msg + "§ferfolgreich reportet!");
-                            }
-                            else {
-                                player.sendMessage(CCPlugin.getPrefix() + "§cEs ist kein Teammitglied Online!");
-                            }
+                            player.sendMessage(CCPlugin.getPrefix() + "Du hast den Spieler §a" + t.getName() + " §ffür §a" + msg + "§ferfolgreich reportet!");
+
+                            if (staffOnline == 0)  player.sendMessage(CCPlugin.getPrefix() + "§cEs ist kein Teammitglied Online!");
 
                             if (!DiscordConfigData.getDiscordConfigData().getUrl().equals("")) {
                                 try {
                                     CCPlugin.getInstance().sendReport(player, t, msg.toString());
+                                    player.sendMessage(CCPlugin.getPrefix() + "Dein Report wurde erfolgreich an das Discord Team gesendet!");
+                                }
+                                catch (IOException e) {
+                                    player.sendMessage(CCPlugin.getPrefix() + "Dein Report konnte leider nicht an das Discord Team gesendet werden, weil ein Fehler aufgetreten ist.");
+                                }
+                            }
+                        }
+                        else if (oT != null) {
+                            StringBuilder msg = new StringBuilder();
+                            for (int i = 1; i < args.length; i++) {
+                                msg.append(args[i]).append(" ");
+                            }
+
+                            int staffOnline = 0;
+
+                            for (Player staff : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
+                                if (staff.hasPermission("mario.staff") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+                                    staffOnline++;
+
+                                    staff.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + player.getName() + " hat §a" + oT.getName() + " §ffür §a" + msg + "§freportet!");
+                                }
+                            }
+
+                            player.sendMessage(CCPlugin.getPrefix() + "Du hast den Spieler §a" + oT.getName() + " §ffür §a" + msg + "§ferfolgreich reportet!");
+
+                            if (staffOnline == 0)  player.sendMessage(CCPlugin.getPrefix() + "§cEs ist kein Teammitglied Online!");
+
+                            if (!DiscordConfigData.getDiscordConfigData().getUrl().equals("")) {
+                                try {
+                                    CCPlugin.getInstance().sendReport(player, oT, msg.toString());
                                     player.sendMessage(CCPlugin.getPrefix() + "Dein Report wurde erfolgreich an das Discord Team gesendet!");
                                 }
                                 catch (IOException e) {

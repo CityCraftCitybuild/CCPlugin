@@ -14,9 +14,11 @@ import de.mariocst.cc.commands.World.*;
 import de.mariocst.cc.config.configdata.*;
 import de.mariocst.cc.config.configs.*;
 import de.mariocst.cc.forms.NavigatorForm;
+import de.mariocst.cc.forms.ReportForm;
 import de.mariocst.cc.listeners.*;
 import de.mariocst.cc.webhook.DiscordWebhook;
 import lombok.Getter;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -61,6 +63,9 @@ public final class CCPlugin extends JavaPlugin {
 
     @Getter
     public NavigatorForm navigatorForm;
+
+    @Getter
+    public ReportForm reportForm;
 
     @Override
     public void onLoad() {
@@ -291,6 +296,7 @@ public final class CCPlugin extends JavaPlugin {
 
         // Forms
         this.navigatorForm = new NavigatorForm();
+        this.reportForm = new ReportForm();
     }
 
     public static CCPlugin getInstance() {
@@ -318,6 +324,25 @@ public final class CCPlugin extends JavaPlugin {
     }
 
     public void sendReport(Player player, Player reported, String reason) throws IOException {
+        DiscordWebhook webhook = new DiscordWebhook(discordConfigData.getUrl());
+
+        webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                .setTitle(discordConfigData.getTitle())
+                .setDescription(discordConfigData.getDescription())
+                .addField("Spieler", player.getName(), false)
+                .addField("Reported", reported.getName(), false)
+                .addField("Grund", reason, false)
+                .setColor(Color.RED));
+
+        try {
+            webhook.execute();
+        }
+        catch (IOException e) {
+            this.getServer().getLogger().severe(e.getLocalizedMessage());
+        }
+    }
+
+    public void sendReport(Player player, OfflinePlayer reported, String reason) throws IOException {
         DiscordWebhook webhook = new DiscordWebhook(discordConfigData.getUrl());
 
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
