@@ -59,7 +59,7 @@ public final class CCPlugin extends JavaPlugin {
 
     public List<Player> invTroll = new ArrayList<>();
     public List<Player> staffChat = new ArrayList<>();
-    public List<Player> godmode = new ArrayList<>();
+    public List<Player> godMode = new ArrayList<>();
 
     @Getter
     public NavigatorForm navigatorForm;
@@ -156,7 +156,7 @@ public final class CCPlugin extends JavaPlugin {
         pluginManager.registerEvents(new BlockBreakListener(), this);
         pluginManager.registerEvents(new ChatListener(), this);
         pluginManager.registerEvents(new DeathListener(), this);
-        pluginManager.registerEvents(new GodmodeListener(), this);
+        pluginManager.registerEvents(new GodModeListener(), this);
         pluginManager.registerEvents(new InventoryListener(), this);
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new KickListener(), this);
@@ -250,7 +250,7 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("feed")).setExecutor(new FeedCommand());
         Objects.requireNonNull(getCommand("fly")).setExecutor(new FlyCommand());
         Objects.requireNonNull(getCommand("gm")).setExecutor(new GMCommand());
-        Objects.requireNonNull(getCommand("godmode")).setExecutor(new GodmodeCommand());
+        Objects.requireNonNull(getCommand("godmode")).setExecutor(new GodModeCommand());
         Objects.requireNonNull(getCommand("heal")).setExecutor(new HealCommand());
         Objects.requireNonNull(getCommand("speed")).setExecutor(new SpeedCommand());
         Objects.requireNonNull(getCommand("sudo")).setExecutor(new SudoCommand());

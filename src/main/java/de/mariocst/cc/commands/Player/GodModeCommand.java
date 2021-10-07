@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class GodmodeCommand implements CommandExecutor {
+public class GodModeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
@@ -17,13 +17,13 @@ public class GodmodeCommand implements CommandExecutor {
         }
 
         if (player.hasPermission("mario.godmode") || player.hasPermission("*") || player.isOp()) {
-            if (CCPlugin.getInstance().godmode.contains(player)) {
-                CCPlugin.getInstance().godmode.remove(player);
+            if (CCPlugin.getInstance().godMode.contains(player)) {
+                CCPlugin.getInstance().godMode.remove(player);
 
                 player.sendMessage(CCPlugin.getPrefix() + "Du bist nun nicht mehr unbesiegbar!");
             }
             else {
-                CCPlugin.getInstance().godmode.add(player);
+                CCPlugin.getInstance().godMode.add(player);
 
                 player.sendMessage(CCPlugin.getPrefix() + "Du bist nun unbesiegbar!");
             }
