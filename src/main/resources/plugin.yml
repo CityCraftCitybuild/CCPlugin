@@ -200,9 +200,6 @@ commands:
     description: Wer ist alles Online?
     aliases: [ "oplayers" ]
     permission: mario.onlineplayers
-  plugin:
-    description: Lade/Entlade ein Plugin, oder lade ein Plugin neu! MANCHE PLUGINS UNTERSTÜTZEN DAS LADEN NICHT!
-    permission: mario.plugin
 
 permissions:
   mario.*:
@@ -260,7 +257,6 @@ permissions:
       mario.ffa: true
       mario.nether: true
       mario.onlineplayers: true
-      mario.plugin: true
   mario.heal:
     description: Rechte für den /heal Command!
     default: op
@@ -433,7 +429,4 @@ permissions:
     default: op
   mario.onlineplayers:
     description: Rechte für den /onlineplayers Command!
-    default: op
-  mario.plugin:
-    description: Rechte für den /plugin Command!
     default: op
