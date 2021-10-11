@@ -275,7 +275,6 @@ public final class CCPlugin extends JavaPlugin {
 
         // Storing
         Objects.requireNonNull(getCommand("backpackstored")).setExecutor(new BackpackStoredCommand());
-        Objects.requireNonNull(getCommand("ffaarmor")).setExecutor(new FFAArmorCommand());
         Objects.requireNonNull(getCommand("ffainventory")).setExecutor(new FFAInventoryCommand());
         Objects.requireNonNull(getCommand("restoreinventory")).setExecutor(new RestoreInventoryCommand());
         Objects.requireNonNull(getCommand("storeinventory")).setExecutor(new StoreInventoryCommand());

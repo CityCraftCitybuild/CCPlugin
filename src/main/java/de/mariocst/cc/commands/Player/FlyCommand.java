@@ -90,7 +90,11 @@ public class FlyCommand implements CommandExecutor {
                         }
                     }
                     else {
-                        if (player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName())) {
+                        if (player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName())
+                                && !player.hasPermission("mario.fly.bypass")
+                                && !player.hasPermission("mario.*")
+                                && !player.hasPermission("*")
+                                && !player.isOp()) {
                             player.sendMessage(CCPlugin.getPrefix() + "Du darfst in FFA nicht fliegen!");
                             return true;
                         }

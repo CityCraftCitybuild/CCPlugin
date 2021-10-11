@@ -145,10 +145,6 @@ commands:
     description: Öffne das Inventar eines Spielers, während er im FFA ist!
     aliases: [ "ffai" ]
     permission: mario.ffainventory
-  ffaarmor:
-    description: Bekomme deine Rüstung zurück!
-    aliases: [ "ffaa" ]
-    permission: mario.ffaarmor
   report:
     description: Reporte eine Spieler!
     permission: mario.report
@@ -242,7 +238,6 @@ permissions:
       mario.web: true
       mario.colorcodes: true
       mario.ffainventory: true
-      mario.ffaarmor: true
       mario.report: true
       mario.staff: true
       mario.godmode: true
@@ -376,9 +371,6 @@ permissions:
     default: op
   mario.ffainventory:
     description: Rechte für den /ffainventory Command!
-    default: op
-  mario.ffaarmor:
-    description: Rechte für den /ffaarmor Command!
     default: op
   mario.report:
     description: Rechte für den /report Command!

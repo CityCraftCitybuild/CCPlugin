@@ -169,71 +169,24 @@ public class WorldChangeListener implements Listener {
                 }
             }
 
-            player.getInventory().setHelmet(new ItemStack(Material.AIR, 0));
-            player.getInventory().setChestplate(new ItemStack(Material.AIR, 0));
-            player.getInventory().setLeggings(new ItemStack(Material.AIR, 0));
-            player.getInventory().setBoots(new ItemStack(Material.AIR, 0));
-
-            ItemStack helmet = new ItemStack(Material.IRON_HELMET, 1);
-            ItemMeta helmetMeta = helmet.getItemMeta();
-
-            helmetMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
-            helmetMeta.setUnbreakable(true);
-
-            helmet.setItemMeta(helmetMeta);
-
-            ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemMeta chestplateMeta = chestplate.getItemMeta();
-
-            chestplateMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
-            chestplateMeta.setUnbreakable(true);
-
-            chestplate.setItemMeta(chestplateMeta);
-
-            ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemMeta leggingsMeta = leggings.getItemMeta();
-
-            leggingsMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
-            leggingsMeta.setUnbreakable(true);
-
-            leggings.setItemMeta(leggingsMeta);
-
-            ItemStack boots = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemMeta bootsMeta = boots.getItemMeta();
-
-            bootsMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
-            bootsMeta.setUnbreakable(true);
-
-            boots.setItemMeta(bootsMeta);
-
-            int armor = 0;
-
-            if (inventoryData.getInventory().getItem(36) == helmet) {
+            if (inventoryData.getInventory().getItem(36) != null) {
+                player.getInventory().setHelmet(inventoryData.getInventory().getItem(36));
                 inventoryData.getInventory().clear(36);
-
-                armor++;
             }
 
-            if (inventoryData.getInventory().getItem(37) == chestplate) {
+            if (inventoryData.getInventory().getItem(37) != null) {
+                player.getInventory().setChestplate(inventoryData.getInventory().getItem(37));
                 inventoryData.getInventory().clear(37);
-
-                armor++;
             }
 
-            if (inventoryData.getInventory().getItem(38) == leggings) {
+            if (inventoryData.getInventory().getItem(38) != null) {
+                player.getInventory().setLeggings(inventoryData.getInventory().getItem(38));
                 inventoryData.getInventory().clear(38);
-
-                armor++;
             }
 
-            if (inventoryData.getInventory().getItem(39) == boots) {
+            if (inventoryData.getInventory().getItem(39) != null) {
+                player.getInventory().setBoots(inventoryData.getInventory().getItem(39));
                 inventoryData.getInventory().clear(39);
-
-                armor++;
-            }
-
-            if (armor != 0) {
-                player.sendMessage(CCPlugin.getPrefix() + "Mit /ffaarmor bekommst du deine Rüstung wieder!");
             }
 
             if (inventoryData.getInventory().getItem(40) != null) {
