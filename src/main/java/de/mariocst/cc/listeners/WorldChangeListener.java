@@ -159,20 +159,15 @@ public class WorldChangeListener implements Listener {
         } else if (event.getFrom().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName())) {
             InventoryData inventoryData = CCPlugin.getInstance().getInventoryDataManager().getInventory(player.getUniqueId());
 
-            for (int i = 0; i <= 35; i++) {
-                player.getInventory().clear(i);
+            player.getInventory().clear();
 
+            for (int i = 0; i <= 35; i++) {
                 if (inventoryData.getInventory().getItem(i) != null) {
                     player.getInventory().setItem(i, inventoryData.getInventory().getItem(i));
 
                     inventoryData.getInventory().clear(i);
                 }
             }
-
-            player.getInventory().setHelmet(new ItemStack(Material.AIR));
-            player.getInventory().setChestplate(new ItemStack(Material.AIR));
-            player.getInventory().setLeggings(new ItemStack(Material.AIR));
-            player.getInventory().setBoots(new ItemStack(Material.AIR));
 
             if (inventoryData.getInventory().getItem(36) != null) {
                 player.getInventory().setHelmet(inventoryData.getInventory().getItem(36));
