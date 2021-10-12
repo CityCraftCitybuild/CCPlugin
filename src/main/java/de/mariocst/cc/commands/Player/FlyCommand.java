@@ -90,7 +90,7 @@ public class FlyCommand implements CommandExecutor {
                         }
                     }
                     else {
-                        if (player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName())
+                        if ((player.getWorld().getName().equalsIgnoreCase(FFAData.getFFAData().getWorldName()) || player.getWorld().getName().equals("ffa"))
                                 && !player.hasPermission("mario.fly.bypass")
                                 && !player.hasPermission("mario.*")
                                 && !player.hasPermission("*")
