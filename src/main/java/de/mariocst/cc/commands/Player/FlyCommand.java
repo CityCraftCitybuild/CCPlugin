@@ -72,7 +72,7 @@ public class FlyCommand implements CommandExecutor {
                             return false;
                         }
 
-                        if (FlyWorlds.getFlyWorlds().getWorlds().contains(player.getWorld().getName())) {
+                        if (FlyWorlds.getFlyWorlds().getWorlds().contains(player.getWorld().getName()) && !player.getWorld().getName().equals("ffa")) {
                             if (!(player.getAllowFlight())) {
                                 player.setAllowFlight(true);
                                 player.setFlying(true);
