@@ -169,6 +169,11 @@ public class WorldChangeListener implements Listener {
                 }
             }
 
+            player.getInventory().setHelmet(new ItemStack(Material.AIR));
+            player.getInventory().setChestplate(new ItemStack(Material.AIR));
+            player.getInventory().setLeggings(new ItemStack(Material.AIR));
+            player.getInventory().setBoots(new ItemStack(Material.AIR));
+
             if (inventoryData.getInventory().getItem(36) != null) {
                 player.getInventory().setHelmet(inventoryData.getInventory().getItem(36));
                 inventoryData.getInventory().clear(36);
