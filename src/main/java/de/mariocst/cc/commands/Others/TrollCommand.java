@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class TrollCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        String usage = "/troll <explosion|inventory|thunderstrike>";
+        String usage = "/troll <explosion|inventory|thunderstruck>";
 
         if (!(sender instanceof Player player)) {
             try {
@@ -66,12 +66,12 @@ public class TrollCommand implements CommandExecutor {
                                         }
                                     }
                                 }
-                                case "thunderstrike", "ts", "strike" -> {
+                                case "thunderstruck", "ts", "struck" -> {
                                     t.getWorld().strikeLightning(t.getLocation());
 
                                     sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                                 }
-                                default -> sender.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstrike> <Spieler>");
+                                default -> sender.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstruck> <Spieler>");
                             }
                         }
                         else {
@@ -135,13 +135,13 @@ public class TrollCommand implements CommandExecutor {
                                         player.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " darf nun nicht mehr sein Inventar benutzen!");
                                     }
                                 }
-                                case "thunderstrike", "ts", "strike" -> {
+                                case "thunderstruck", "ts", "struck" -> {
                                     t.getWorld().strikeLightning(t.getLocation());
 
                                     sender.sendMessage(CCPlugin.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                                 }
                                 default -> {
-                                    player.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstrike> <Spieler>");
+                                    player.sendMessage(CCPlugin.getPrefix() + "/troll <explosion|inventory|thunderstruck> <Spieler>");
                                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
                                 }
                             }
