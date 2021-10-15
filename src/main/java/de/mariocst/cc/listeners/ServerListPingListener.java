@@ -3,7 +3,6 @@ package de.mariocst.cc.listeners;
 import com.destroystokyo.paper.event.server.PaperServerListPingEvent;
 import de.mariocst.cc.CCPlugin;
 import de.mariocst.cc.utils.FakePlayerProfile;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
