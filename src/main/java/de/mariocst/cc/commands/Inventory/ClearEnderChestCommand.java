@@ -27,7 +27,6 @@ public class ClearEnderChestCommand implements CommandExecutor {
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         sender.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
                     }
                 }
@@ -41,7 +40,7 @@ public class ClearEnderChestCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.clear") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.clear") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 0) {
                     player.getEnderChest().clear();
@@ -58,28 +57,27 @@ public class ClearEnderChestCommand implements CommandExecutor {
                         }
                         else {
                             player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     }
                 }
                 else {
                     player.sendMessage(CCPlugin.getPrefix() + "/clearenderchest oder /clearenderchest <Spieler>");
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 player.sendMessage(CCPlugin.getPrefix() + "/clearenderchest oder /clearenderchest <Spieler>");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

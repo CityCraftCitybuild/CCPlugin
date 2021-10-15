@@ -16,12 +16,12 @@ public class ECCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.ec") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.ec") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             player.openInventory(player.getEnderChest());
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

@@ -6,10 +6,18 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class GMCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class GMCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
@@ -55,21 +63,20 @@ public class GMCommand implements CommandExecutor {
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         sender.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
                     }
                 }
                 else {
-                    sender.sendMessage(CCPlugin.getPrefix() + "Usage: /gm 0 oder 1 oder 2 oder 3 oder survival oder creative oder adventure oder spectator oder su oder c oder a oder sp");
+                    sender.sendMessage(CCPlugin.getPrefix() + "/gm 0|1|2|3");
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
-                sender.sendMessage(CCPlugin.getPrefix() + "Usage: /gm 0 oder 1 oder 2 oder 3 oder survival oder creative oder adventure oder spectator oder su oder c oder a oder sp");
+                sender.sendMessage(CCPlugin.getPrefix() + "/gm 0|1|2|3");
             }
             return false;
         }
 
-        if (player.hasPermission("mario.gm") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.gm") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             String msg = String.join(" ", args);
 
             boolean b = msg.equals("0") || msg.equalsIgnoreCase("survival") || msg.equalsIgnoreCase("su");
@@ -81,22 +88,22 @@ public class GMCommand implements CommandExecutor {
                 if (args.length == 1) {
                     if (b) {
                         player.setGameMode(GameMode.SURVIVAL);
-                        sender.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Survival gestellt!");
+                        player.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Survival gestellt!");
                     }
                     else if (b1) {
                         player.setGameMode(GameMode.CREATIVE);
-                        sender.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Creative gestellt!");
+                        player.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Creative gestellt!");
                     }
                     else if (b2) {
                         player.setGameMode(GameMode.ADVENTURE);
-                        sender.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Adventure gestellt!");
+                        player.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Adventure gestellt!");
                     }
                     else if (b3) {
                         player.setGameMode(GameMode.SPECTATOR);
-                        sender.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Spectator gestellt!");
+                        player.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Spectator gestellt!");
                     }
                     else {
-                        sender.sendMessage(CCPlugin.getPrefix() + "Bitte gib einen gültigen Gamemode ein!");
+                        player.sendMessage(CCPlugin.getPrefix() + "Bitte gib einen gültigen Gamemode ein!");
                     }
                 }
                 else if (args.length == 2) {
@@ -107,52 +114,73 @@ public class GMCommand implements CommandExecutor {
                             if (b) {
                                 t.setGameMode(GameMode.SURVIVAL);
                                 t.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Survival gestellt!");
-                                sender.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Survival gesetzt worden!");
+                                player.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Survival gesetzt worden!");
                             }
                             else if (b1) {
                                 t.setGameMode(GameMode.CREATIVE);
                                 t.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Creative gestellt!");
-                                sender.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Creative gesetzt worden!");
+                                player.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Creative gesetzt worden!");
                             }
                             else if (b2) {
                                 t.setGameMode(GameMode.ADVENTURE);
                                 t.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Adventure gestellt!");
-                                sender.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Adventure gesetzt worden!");
+                                player.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Adventure gesetzt worden!");
                             }
                             else if (b3) {
                                 t.setGameMode(GameMode.SPECTATOR);
                                 t.sendMessage(CCPlugin.getPrefix() + "Dein Gamemode wurde auf Spectator gestellt!");
-                                sender.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Spectator gesetzt worden!");
+                                player.sendMessage(CCPlugin.getPrefix() + "Der Gamemode von " + t.getName() + " ist auf Spectator gesetzt worden!");
                             }
                             else {
-                                sender.sendMessage(CCPlugin.getPrefix() + "Bitte gib einen gültigen Gamemode ein!");
+                                player.sendMessage(CCPlugin.getPrefix() + "Bitte gib einen gültigen Gamemode ein!");
                             }
                         }
                         else {
-                            sender.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                            player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
+                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
-                        sender.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     }
                 }
                 else {
-                    sender.sendMessage(CCPlugin.getPrefix() + "Usage: /gm 0 oder 1 oder 2 oder 3 oder survival oder creative oder adventure oder spectator oder su oder c oder a oder sp");
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                    player.sendMessage(CCPlugin.getPrefix() + "/gm 0|1|2|3");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
-                sender.sendMessage(CCPlugin.getPrefix() + "Usage: /gm 0 oder 1 oder 2 oder 3 oder survival oder creative oder adventure oder spectator oder su oder c oder a oder sp");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.sendMessage(CCPlugin.getPrefix() + "/gm 0|1|2|3");
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
+    }
+
+    private final String[] GAMEMODES = { "0", "1", "2", "3", "survival", "creative", "adventure", "spectator", "su", "c", "a", "sp" };
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        final List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            StringUtil.copyPartialMatches(args[0], Arrays.asList(GAMEMODES), completions);
+            Collections.sort(completions);
+        }
+        else if (args.length == 2) {
+            final List<String> names = new ArrayList<>();
+
+            for (Player player : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
+                names.add(player.getName());
+            }
+
+            StringUtil.copyPartialMatches(args[1], names, completions);
+            Collections.sort(completions);
+        }
+        return completions;
     }
 }

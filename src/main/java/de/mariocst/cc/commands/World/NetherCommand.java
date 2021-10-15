@@ -18,7 +18,7 @@ public class NetherCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.nether") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.nether") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             NetherData netherData = NetherData.getNetherData();
 
             if (CCPlugin.getInstance().getServer().getWorld(netherData.getWorldName()) != null) {
@@ -36,7 +36,7 @@ public class NetherCommand implements CommandExecutor {
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

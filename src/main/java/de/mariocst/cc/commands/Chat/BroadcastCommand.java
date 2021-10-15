@@ -29,7 +29,7 @@ public class BroadcastCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.broadcast") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.broadcast") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (args.length >= 1) {
                 StringBuilder msg = new StringBuilder();
                 for (String arg : args) {
@@ -42,12 +42,12 @@ public class BroadcastCommand implements CommandExecutor {
             }
             else {
                 player.sendMessage(CCPlugin.getPrefix() + "§cUsage: §e/broadcast <Message>");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

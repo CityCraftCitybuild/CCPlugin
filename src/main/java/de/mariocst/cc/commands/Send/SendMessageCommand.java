@@ -27,7 +27,6 @@ public class SendMessageCommand implements CommandExecutor {
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         sender.sendMessage("Dieser Spieler existiert nicht!");
                     }
                 }
@@ -38,7 +37,7 @@ public class SendMessageCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.sendmessage") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.sendmessage") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length >= 2) {
                     Player t = player.getServer().getPlayer(args[0]);
@@ -54,20 +53,19 @@ public class SendMessageCommand implements CommandExecutor {
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     }
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 player.sendMessage(CCPlugin.getPrefix() + "/sm <Spieler> <Nachricht>");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

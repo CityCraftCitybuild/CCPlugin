@@ -29,13 +29,13 @@ public class UnbreakableCommand implements CommandExecutor {
                 player.sendMessage(meta.isUnbreakable() ? CCPlugin.getPrefix() + "Das Item ist nun unzerstörbar!" : "Das Item ist nun zerstörbar!");
             }
             else {
-                sender.sendMessage(CCPlugin.getPrefix() + "Bitte halte ein Item in der Hand!");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.sendMessage(CCPlugin.getPrefix() + "Bitte halte ein Item in der Hand!");
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
-            sender.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

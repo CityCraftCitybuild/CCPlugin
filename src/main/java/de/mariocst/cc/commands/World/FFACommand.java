@@ -18,7 +18,7 @@ public class FFACommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.ffa") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.ffa") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             FFAData ffaData = FFAData.getFFAData();
 
             if (CCPlugin.getInstance().getServer().getWorld(ffaData.getWorldName()) != null) {
@@ -36,7 +36,7 @@ public class FFACommand implements CommandExecutor {
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

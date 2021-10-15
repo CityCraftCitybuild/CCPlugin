@@ -243,6 +243,7 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("discord")).setExecutor(new DiscordCommand());
         Objects.requireNonNull(getCommand("enderchest")).setExecutor(new ECCommand());
         Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
+        Objects.requireNonNull(getCommand("troll")).setTabCompleter(new TrollCommand());
         Objects.requireNonNull(getCommand("web")).setExecutor(new WebCommand());
 
         // Player
@@ -250,9 +251,11 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("feed")).setExecutor(new FeedCommand());
         Objects.requireNonNull(getCommand("fly")).setExecutor(new FlyCommand());
         Objects.requireNonNull(getCommand("gm")).setExecutor(new GMCommand());
+        Objects.requireNonNull(getCommand("gm")).setTabCompleter(new GMCommand());
         Objects.requireNonNull(getCommand("godmode")).setExecutor(new GodModeCommand());
         Objects.requireNonNull(getCommand("heal")).setExecutor(new HealCommand());
         Objects.requireNonNull(getCommand("speed")).setExecutor(new SpeedCommand());
+        Objects.requireNonNull(getCommand("speed")).setTabCompleter(new SpeedCommand());
         Objects.requireNonNull(getCommand("sudo")).setExecutor(new SudoCommand());
         Objects.requireNonNull(getCommand("weed")).setExecutor(new WeedCommand());
 
@@ -264,13 +267,17 @@ public final class CCPlugin extends JavaPlugin {
         // Server
         Objects.requireNonNull(getCommand("banall")).setExecutor(new BanAllCommand());
         Objects.requireNonNull(getCommand("config")).setExecutor(new ConfigCommand());
+        Objects.requireNonNull(getCommand("config")).setTabCompleter(new ConfigCommand());
         Objects.requireNonNull(getCommand("kickall")).setExecutor(new KickAllCommand());
         Objects.requireNonNull(getCommand("onlineplayers")).setExecutor(new OnlinePlayersCommand());
         Objects.requireNonNull(getCommand("report")).setExecutor(new ReportCommand());
+        Objects.requireNonNull(getCommand("report")).setTabCompleter(new ReportCommand());
         Objects.requireNonNull(getCommand("staffchat")).setExecutor(new StaffChatCommand());
+        Objects.requireNonNull(getCommand("staffchat")).setTabCompleter(new StaffChatCommand());
 
         // Setter
         Objects.requireNonNull(getCommand("setlink")).setExecutor(new SetLinkCommand());
+        Objects.requireNonNull(getCommand("setlink")).setTabCompleter(new SetLinkCommand());
         Objects.requireNonNull(getCommand("setprefix")).setExecutor(new SetPrefixCommand());
 
         // Storing

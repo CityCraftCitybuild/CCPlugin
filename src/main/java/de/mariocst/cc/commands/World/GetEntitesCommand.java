@@ -18,7 +18,7 @@ public class GetEntitesCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.getentities") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.getentities") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             boolean entityFound = false;
 
             for (Entity entity : player.getWorld().getEntities()) {
@@ -32,7 +32,7 @@ public class GetEntitesCommand implements CommandExecutor {
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

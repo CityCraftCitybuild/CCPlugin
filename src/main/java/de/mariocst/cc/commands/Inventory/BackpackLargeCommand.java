@@ -17,19 +17,19 @@ public class BackpackLargeCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.backpacklarge") || player.hasPermission("mario.*") || player.isOp()) {
+        if (player.hasPermission("mario.backpacklarge") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (!player.getWorld().getName().equalsIgnoreCase("ffa") || player.isOp()) {
                 BackpackLarge backpackLarge = CCPlugin.getInstance().getBackpackManagerLarge().getBackpackLarge(player.getUniqueId());
                 player.openInventory(backpackLarge.getInventory());
             }
             else {
                 player.sendMessage(CCPlugin.getPrefix() + "Du darfst dir keine Items in FFA cheaten :)");
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
-            sender.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

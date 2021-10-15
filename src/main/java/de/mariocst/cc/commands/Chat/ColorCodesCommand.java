@@ -22,16 +22,16 @@ public class ColorCodesCommand implements CommandExecutor {
         }
 
         if (player.hasPermission("mario.colorcodes") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
-            sender.sendMessage(CCPlugin.getPrefix() + "§6ColorCodes:");
-            sender.sendMessage(CCPlugin.getPrefix() + "§6Alle beginnen mit & !");
-            sender.sendMessage(CCPlugin.getPrefix() + "0: §0Schwarz§f, 1: §1Dunkel Blau§f, 2: §2Dunkel Grün§f, 3: §3Cyan§f, 4: §4Rot");
-            sender.sendMessage(CCPlugin.getPrefix() + "5: §5Lila§f, 6: §6Orange§f, 7: §7Hell Grau§f, 8: §8Dunkel Grau§f, 9: §9Hell Blau");
-            sender.sendMessage(CCPlugin.getPrefix() + "a: §aHell Grün§f, b: §bHell Blau§f, c: §cHell Rot§f, d: §dPink§f, e: §eGelb§f, f: Weiß");
-            sender.sendMessage(CCPlugin.getPrefix() + "k: §kmagische Zeichen§r§f, l: §lFett§r§f, o: §oKursiv§r§f, r: §rMacht alles rückgängig");
+            player.sendMessage(CCPlugin.getPrefix() + "§6ColorCodes:");
+            player.sendMessage(CCPlugin.getPrefix() + "§6Alle beginnen mit & !");
+            player.sendMessage(CCPlugin.getPrefix() + "0: §0Schwarz§f, 1: §1Dunkel Blau§f, 2: §2Dunkel Grün§f, 3: §3Cyan§f, 4: §4Rot");
+            player.sendMessage(CCPlugin.getPrefix() + "5: §5Lila§f, 6: §6Orange§f, 7: §7Hell Grau§f, 8: §8Dunkel Grau§f, 9: §9Hell Blau");
+            player.sendMessage(CCPlugin.getPrefix() + "a: §aHell Grün§f, b: §bHell Blau§f, c: §cHell Rot§f, d: §dPink§f, e: §eGelb§f, f: Weiß");
+            player.sendMessage(CCPlugin.getPrefix() + "k: §kmagische Zeichen§r§f, l: §lFett§r§f, o: §oKursiv§r§f, r: §rMacht alles rückgängig");
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

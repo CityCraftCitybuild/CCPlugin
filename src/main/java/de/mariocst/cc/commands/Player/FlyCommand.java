@@ -40,7 +40,6 @@ public class FlyCommand implements CommandExecutor {
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         sender.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
                     }
                 }
@@ -86,7 +85,7 @@ public class FlyCommand implements CommandExecutor {
                         }
                         else {
                             player.sendMessage(CCPlugin.getPrefix() + "Du bist nicht berechtigt, in dieser Welt zu fliegen!");
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         }
                     }
                     else {
@@ -114,7 +113,7 @@ public class FlyCommand implements CommandExecutor {
                 else if (args.length == 1) {
                     if (!player.hasPermission("mario.*") && !player.hasPermission("*") && !player.isOp()) {
                         player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         return false;
                     }
 
@@ -137,28 +136,27 @@ public class FlyCommand implements CommandExecutor {
                         }
                         else {
                             player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
                         player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     }
                 }
                 else {
                     player.sendMessage(CCPlugin.getPrefix() + usage);
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 player.sendMessage(CCPlugin.getPrefix() + usage);
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
-            sender.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

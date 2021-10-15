@@ -17,12 +17,12 @@ public class WebCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.web") || player.hasPermission("*") || player.isOp()) {
-            sender.sendMessage(CCPlugin.getPrefix() + "Unser Web: §a" + WebLink.getWebLink().getLink());
+        if (player.hasPermission("mario.web") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+            player.sendMessage(CCPlugin.getPrefix() + "Unser Web: §a" + WebLink.getWebLink().getLink());
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

@@ -7,10 +7,18 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class SetLinkCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class SetLinkCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         StringBuilder msg = new StringBuilder();
@@ -45,7 +53,7 @@ public class SetLinkCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.setlink") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.setlink") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (args.length >= 2) {
                 switch (args[0].toLowerCase()) {
                     case "discord" -> {
@@ -54,7 +62,7 @@ public class SetLinkCommand implements CommandExecutor {
                         }
 
                         DiscordLink.getDiscordLink().setLink(msg.toString());
-                        sender.sendMessage(CCPlugin.getPrefix() + "Der Discord Link ist nun: §a" + msg);
+                        player.sendMessage(CCPlugin.getPrefix() + "Der Discord Link ist nun: §a" + msg);
                         CCPlugin.getInstance().saveConfigs();
                     }
                     case "web" -> {
@@ -63,20 +71,32 @@ public class SetLinkCommand implements CommandExecutor {
                         }
 
                         WebLink.getWebLink().setLink(msg.toString());
-                        sender.sendMessage(CCPlugin.getPrefix() + "Der Web Link ist nun: §a" + msg);
+                        player.sendMessage(CCPlugin.getPrefix() + "Der Web Link ist nun: §a" + msg);
                         CCPlugin.getInstance().saveConfigs();
                     }
-                    default -> sender.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
+                    default -> player.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
                 }
             }
             else {
-                sender.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
+                player.sendMessage("§cUsage: §e/setlink <discord|web> <Link>");
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
+    }
+
+    private final String[] MODES = { "discord", "web" };
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        final List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            StringUtil.copyPartialMatches(args[0], Arrays.asList(MODES), completions);
+            Collections.sort(completions);
+        }
+        return completions;
     }
 }

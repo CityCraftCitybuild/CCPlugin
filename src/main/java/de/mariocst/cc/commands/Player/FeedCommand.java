@@ -40,7 +40,7 @@ public class FeedCommand implements CommandExecutor {
                             }
                         }
                         catch (NullPointerException e) {
-                            e.printStackTrace();
+                            
                             sender.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
                         }
                     }
@@ -55,14 +55,14 @@ public class FeedCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.feed") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.feed") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
                 if (args.length == 0) {
                     player.setFoodLevel(20);
                     player.sendMessage(CCPlugin.getPrefix() + "Du wurdest gesättigt!");
                     player.playSound(player.getLocation(), Sound.AMBIENT_CAVE, 0.2f, 1.2f);
                 }
-                else if (args.length == 1 && player.hasPermission("mario.feed.other")) {
+                else if (args.length == 1 && (player.hasPermission("mario.feed.other") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp())) {
                     if (args[0].equalsIgnoreCase("@a")) {
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                             if (t != player) {
@@ -85,29 +85,28 @@ public class FeedCommand implements CommandExecutor {
                             }
                             else {
                                 player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                             }
                         }
                         catch (NullPointerException e) {
-                            e.printStackTrace();
                             player.sendMessage(CCPlugin.getPrefix() + "Dieser Spieler existiert nicht!");
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         }
                     }
                 }
                 else {
                     player.sendMessage(CCPlugin.getPrefix() + usage);
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 player.sendMessage(CCPlugin.getPrefix() + usage);
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

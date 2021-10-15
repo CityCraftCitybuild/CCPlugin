@@ -16,7 +16,7 @@ public class ForceLoadChunkCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.forceloadchunk") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.forceloadchunk") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (player.getLocation().getChunk().isForceLoaded()) {
                 player.getLocation().getChunk().setForceLoaded(false);
                 player.sendMessage(CCPlugin.getPrefix() + "Der Chunk bei X: " + player.getLocation().getChunk().getX() + " und Z: " + player.getLocation().getChunk().getZ() + " ist nun nicht mehr immer geladen!");
@@ -28,7 +28,7 @@ public class ForceLoadChunkCommand implements CommandExecutor {
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

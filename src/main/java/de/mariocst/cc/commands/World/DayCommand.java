@@ -16,13 +16,13 @@ public class DayCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.day") || player.hasPermission("*") || player.isOp()) {
-            player.getWorld().setTime(0);
+        if (player.hasPermission("mario.day") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
+            player.getWorld().setTime(1000);
             player.sendMessage(CCPlugin.getPrefix() + "Die Zeit wurde auf Tag gestellt!");
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

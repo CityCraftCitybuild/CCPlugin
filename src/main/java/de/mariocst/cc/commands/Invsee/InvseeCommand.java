@@ -16,7 +16,7 @@ public class InvseeCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.invsee") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.invsee") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             String usage = "§cUsage: §6/invsee <Spieler>";
             try {
                 if (args.length == 1) {
@@ -25,37 +25,36 @@ public class InvseeCommand implements CommandExecutor {
                         Player t = player.getServer().getPlayer(args[0]);
                         if (t != null) {
                             if (t.getName().equals(player.getName())) {
-                                sender.sendMessage(CCPlugin.getPrefix() + "Du kannst doch wohl noch dein eigenes Inventar öffnen xD");
-                                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                                player.sendMessage(CCPlugin.getPrefix() + "Du kannst doch wohl noch dein eigenes Inventar öffnen xD");
+                                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                             }
                             else {
                                 player.openInventory(t.getInventory());
                             }
                         }
                         else {
-                            sender.sendMessage(CCPlugin.getPrefix() + nullp);
-                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                            player.sendMessage(CCPlugin.getPrefix() + nullp);
+                            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         }
                     }
                     catch (NullPointerException e) {
-                        e.printStackTrace();
-                        sender.sendMessage(CCPlugin.getPrefix() + nullp);
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.sendMessage(CCPlugin.getPrefix() + nullp);
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     }
                 }
                 else {
-                    sender.sendMessage(CCPlugin.getPrefix() + usage);
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                    player.sendMessage(CCPlugin.getPrefix() + usage);
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
-                sender.sendMessage(CCPlugin.getPrefix() + usage);
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.sendMessage(CCPlugin.getPrefix() + usage);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

@@ -5,10 +5,18 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class StaffChatCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class StaffChatCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
@@ -32,7 +40,7 @@ public class StaffChatCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.staff") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.staff") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (args.length == 0) {
                 player.sendMessage(CCPlugin.getPrefix() + "§6-- StaffChat Help --");
                 player.sendMessage(CCPlugin.getPrefix() + "§6/sc help: Zeigt dir diese Hilfe an!");
@@ -92,8 +100,20 @@ public class StaffChatCommand implements CommandExecutor {
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
+    }
+
+    private final String[] MODES = { "help", "toggle", "on", "off", "say" };
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        final List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            StringUtil.copyPartialMatches(args[0], Arrays.asList(MODES), completions);
+            Collections.sort(completions);
+        }
+        return completions;
     }
 }

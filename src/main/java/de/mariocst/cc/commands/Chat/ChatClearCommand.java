@@ -26,7 +26,7 @@ public class ChatClearCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.chatclear") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.chatclear") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             for (Player cleared : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                 if (!cleared.hasPermission("mario.chatclear.bypass") && !cleared.hasPermission("mario.*") && !cleared.hasPermission("*") && !cleared.isOp()) {
                     for (int i = 0; i <= 200; i++) {
@@ -39,7 +39,7 @@ public class ChatClearCommand implements CommandExecutor {
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

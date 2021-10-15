@@ -16,13 +16,13 @@ public class NightCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.night") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.night") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             player.getWorld().setTime(16000);
             player.sendMessage(CCPlugin.getPrefix() + "Die Zeit wurde auf Nacht gestellt!");
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

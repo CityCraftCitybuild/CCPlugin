@@ -16,13 +16,13 @@ public class DieCommand implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("mario.die") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.die") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             player.setHealth(0d);
             player.sendMessage(CCPlugin.getPrefix() + "Du bist gestorben.");
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return true;
     }

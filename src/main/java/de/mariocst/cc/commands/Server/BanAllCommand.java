@@ -64,30 +64,30 @@ public class BanAllCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.banall") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.banall") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             try {
                 int count = CCPlugin.getInstance().getServer().getOnlinePlayers().size();
                 if (args.length == 0) {
                     if (count == 1) {
-                        sender.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         return false;
                     }
                     else {
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
-                            if (t != sender && !t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
+                            if (t != player && !t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
                                 CCPlugin.getInstance().getServer().getBanList(BanList.Type.NAME).addBan(t.getName(), "Banned by Admin", Date.from(Instant.ofEpochSecond(7257600000L)), "Console");
                                 t.kick(Component.text("Banned by Admin"));
                             }
                         }
 
-                        sender.sendMessage(CCPlugin.getPrefix() + "Alle Spieler gebannt!");
+                        player.sendMessage(CCPlugin.getPrefix() + "Alle Spieler gebannt!");
                     }
                 }
                 else {
                     if (count == 1) {
-                        sender.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                        player.sendMessage(CCPlugin.getPrefix() + "Kein Spieler ist Online lol");
+                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                         return false;
                     }
                     else {
@@ -97,23 +97,24 @@ public class BanAllCommand implements CommandExecutor {
                         }
 
                         for (Player t : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
-                            if (t != sender && !t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
+                            if (t != player && !t.isOp() && !t.hasPermission("mario.*") && !t.hasPermission("*")) {
                                 CCPlugin.getInstance().getServer().getBanList(BanList.Type.NAME).addBan(t.getName(), reason.toString(), Date.from(Instant.ofEpochSecond(7257600000L)), "Console");
                                 t.kick(Component.text(reason.toString()));
                             }
                         }
-                        sender.sendMessage(CCPlugin.getPrefix() + "Alle Spieler mit dem Grund " + reason + " gebannt!");
+
+                        player.sendMessage(CCPlugin.getPrefix() + "Alle Spieler mit dem Grund " + reason + " gebannt!");
                     }
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
-                sender.sendMessage(CCPlugin.getPrefix() + usage);
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+                player.sendMessage(CCPlugin.getPrefix() + usage);
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }

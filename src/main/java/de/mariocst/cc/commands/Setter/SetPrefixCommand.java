@@ -34,7 +34,7 @@ public class SetPrefixCommand implements CommandExecutor {
             return false;
         }
 
-        if (player.hasPermission("mario.prefix") || player.hasPermission("*") || player.isOp()) {
+        if (player.hasPermission("mario.prefix") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (args.length >= 1) {
                 for (String arg : args) {
                     msg.append(arg).append(" ");
@@ -42,18 +42,18 @@ public class SetPrefixCommand implements CommandExecutor {
 
                 prefix = msg.toString();
 
-                sender.sendMessage(CCPlugin.getPrefix() + "Der Prefix ist nun: " + prefix);
+                player.sendMessage(CCPlugin.getPrefix() + "Der Prefix ist nun: " + prefix);
                 CCPlugin.setPrefix(prefix.replaceAll("&", "§"));
                 Prefix.getPrefixClass().setPrefix(prefix.replaceAll("&", "§"));
                 CCPlugin.getInstance().saveConfigs();
             }
             else {
-                sender.sendMessage("§cUsage: §e/setprefix <Prefix>");
+                player.sendMessage("§cUsage: §e/setprefix <Prefix>");
             }
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
-            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
         }
         return false;
     }
