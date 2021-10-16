@@ -433,3 +433,24 @@ permissions:
       mario.rand.bypass:
         description: Setze für jedes Plot einen Rand!
         default: op
+      mario.rand.premium:
+        description: Rechte auf die Premium Ränder!
+        default: op
+      mario.rand.gold:
+        description: Rechte auf die Gold Ränder!
+        default: op
+      mario.rand.diamant:
+        description: Rechte auf die Diamant Ränder!
+        default: op
+      mario.rand.smaragd:
+        description: Rechte auf die Smaragd Ränder!
+        default: op
+      mario.rand.obsidian:
+        description: Rechte auf die Obsidian Ränder!
+        default: op
+      mario.rand.prime:
+        description: Rechte auf die Prime Ränder!
+        default: op
+      mario.rand.ultimate:
+        description: Rechte auf die Ultimate Ränder!
+        default: op
