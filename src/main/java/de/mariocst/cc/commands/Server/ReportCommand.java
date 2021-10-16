@@ -30,7 +30,7 @@ public class ReportCommand implements CommandExecutor, TabCompleter {
 
         if (player.hasPermission("mario.report") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) {
-                CCPlugin.getInstance().reportForm.openReport(player);
+                CCPlugin.getInstance().getReportForm().openReport(player);
                 return true;
             }
 

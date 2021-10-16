@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.geysermc.floodgate.api.FloodgateApi;
+import org.geysermc.floodgate.api.player.FloodgatePlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class OnlinePlayersCommand implements CommandExecutor {
@@ -21,7 +22,9 @@ public class OnlinePlayersCommand implements CommandExecutor {
 
                 for (Player online : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                     if (FloodgateApi.getInstance().isFloodgatePlayer(online.getUniqueId())) {
-                        sender.sendMessage(CCPlugin.getPrefix() + online.getName() + " (Bedrock)");
+                        FloodgatePlayer fPlayer = FloodgateApi.getInstance().getPlayer(online.getUniqueId());
+
+                        sender.sendMessage(CCPlugin.getPrefix() + online.getName() + " (Bedrock: " + fPlayer.getDeviceOs().toString() + ")");
                     }
                     else {
                         sender.sendMessage(CCPlugin.getPrefix() + online.getName() + " (Java)");
@@ -39,7 +42,7 @@ public class OnlinePlayersCommand implements CommandExecutor {
             }
 
             if (i == 0) {
-                player.sendMessage(CCPlugin.getPrefix() + "Niemand ist auf dem Server!");
+                player.sendMessage(CCPlugin.getPrefix() + "Niemand, außer du, ist auf dem Server!");
                 return true;
             }
 
@@ -47,7 +50,9 @@ public class OnlinePlayersCommand implements CommandExecutor {
 
             for (Player online : CCPlugin.getInstance().getServer().getOnlinePlayers()) {
                 if (FloodgateApi.getInstance().isFloodgatePlayer(online.getUniqueId())) {
-                    player.sendMessage(CCPlugin.getPrefix() + online.getName() + " (Bedrock)");
+                    FloodgatePlayer fPlayer = FloodgateApi.getInstance().getPlayer(online.getUniqueId());
+
+                    player.sendMessage(CCPlugin.getPrefix() + online.getName() + " (Bedrock: " + fPlayer.getDeviceOs().toString() + ")");
                 }
                 else {
                     player.sendMessage(CCPlugin.getPrefix() + online.getName() + " (Java)");

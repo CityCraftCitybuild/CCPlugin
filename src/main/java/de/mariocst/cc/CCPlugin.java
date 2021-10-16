@@ -6,6 +6,7 @@ import de.mariocst.cc.commands.Inventory.*;
 import de.mariocst.cc.commands.Invsee.*;
 import de.mariocst.cc.commands.Others.*;
 import de.mariocst.cc.commands.Player.*;
+import de.mariocst.cc.commands.Plot.RandCommand;
 import de.mariocst.cc.commands.Send.*;
 import de.mariocst.cc.commands.Server.*;
 import de.mariocst.cc.commands.Setter.*;
@@ -14,6 +15,7 @@ import de.mariocst.cc.commands.World.*;
 import de.mariocst.cc.config.configdata.*;
 import de.mariocst.cc.config.configs.*;
 import de.mariocst.cc.forms.NavigatorForm;
+import de.mariocst.cc.forms.RandForm;
 import de.mariocst.cc.forms.ReportForm;
 import de.mariocst.cc.listeners.*;
 import de.mariocst.cc.webhook.DiscordWebhook;
@@ -63,6 +65,9 @@ public final class CCPlugin extends JavaPlugin {
 
     @Getter
     public NavigatorForm navigatorForm;
+
+    @Getter
+    public RandForm randForm;
 
     @Getter
     public ReportForm reportForm;
@@ -162,6 +167,7 @@ public final class CCPlugin extends JavaPlugin {
         pluginManager.registerEvents(new KickListener(), this);
         pluginManager.registerEvents(new NavigatorListener(), this);
         pluginManager.registerEvents(new QuitListener(), this);
+        pluginManager.registerEvents(new RandListener(), this);
         pluginManager.registerEvents(new ServerListPingListener(), this);
         pluginManager.registerEvents(new WorldChangeListener(), this);
     }
@@ -259,6 +265,9 @@ public final class CCPlugin extends JavaPlugin {
         Objects.requireNonNull(getCommand("sudo")).setExecutor(new SudoCommand());
         Objects.requireNonNull(getCommand("weed")).setExecutor(new WeedCommand());
 
+        // Plot
+        Objects.requireNonNull(getCommand("rand")).setExecutor(new RandCommand());
+
         // Send
         Objects.requireNonNull(getCommand("sendactionbar")).setExecutor(new SendActionBarCommand());
         Objects.requireNonNull(getCommand("sendmessage")).setExecutor(new SendMessageCommand());
@@ -302,6 +311,7 @@ public final class CCPlugin extends JavaPlugin {
 
         // Forms
         this.navigatorForm = new NavigatorForm();
+        this.randForm = new RandForm();
         this.reportForm = new ReportForm();
     }
 

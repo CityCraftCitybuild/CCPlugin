@@ -4,7 +4,7 @@ main: de.mariocst.cc.CCPlugin
 api-version: 1.17
 authors: [marioCST]
 description: CityCraft Plugin für 1.17.1
-depend: [floodgate]
+depend: [floodgate, PlotSquared]
 
 commands:
   heal:
@@ -196,6 +196,9 @@ commands:
     description: Wer ist alles Online?
     aliases: [ "oplayers" ]
     permission: mario.onlineplayers
+  rand:
+    description: Ändere den Rand deines Plots!
+    permission: mario.rand
 
 permissions:
   mario.*:
@@ -252,6 +255,7 @@ permissions:
       mario.ffa: true
       mario.nether: true
       mario.onlineplayers: true
+      mario.rand: true
   mario.heal:
     description: Rechte für den /heal Command!
     default: op
@@ -422,3 +426,10 @@ permissions:
   mario.onlineplayers:
     description: Rechte für den /onlineplayers Command!
     default: op
+  mario.rand:
+    description: Rechte für den /rand Command!
+    default: op
+    children:
+      mario.rand.bypass:
+        description: Setze für jedes Plot einen Rand!
+        default: op

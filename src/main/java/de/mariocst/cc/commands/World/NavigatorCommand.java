@@ -24,83 +24,83 @@ public class NavigatorCommand implements CommandExecutor {
 
         if (player.hasPermission("mario.nav") || player.hasPermission("mario.*") || player.hasPermission("*") || player.isOp()) {
             if (FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) {
-                CCPlugin.getInstance().navigatorForm.openNavigator(player);
+                CCPlugin.getInstance().getNavigatorForm().openNavigator(player);
+                return true;
             }
-            else {
-                player.closeInventory();
 
-                Inventory inventory = CCPlugin.getInstance().getServer().createInventory(player, 54, Component.text("§cNavigator"));
+            player.closeInventory();
 
-                ItemStack farmwelt = new ItemStack(Material.GRASS_BLOCK, 1);
-                ItemMeta farmweltMeta = farmwelt.getItemMeta();
+            Inventory inventory = CCPlugin.getInstance().getServer().createInventory(player, 54, Component.text("§cNavigator"));
 
-                ItemStack nether = new ItemStack(Material.NETHERRACK, 1);
-                ItemMeta netherMeta = nether.getItemMeta();
+            ItemStack farmwelt = new ItemStack(Material.GRASS_BLOCK, 1);
+            ItemMeta farmweltMeta = farmwelt.getItemMeta();
 
-                ItemStack end = new ItemStack(Material.END_STONE, 1);
-                ItemMeta endMeta = end.getItemMeta();
+            ItemStack nether = new ItemStack(Material.NETHERRACK, 1);
+            ItemMeta netherMeta = nether.getItemMeta();
 
-                ItemStack cb = new ItemStack(Material.SMOOTH_QUARTZ, 1);
-                ItemMeta cbMeta = cb.getItemMeta();
+            ItemStack end = new ItemStack(Material.END_STONE, 1);
+            ItemMeta endMeta = end.getItemMeta();
 
-                ItemStack lobby = new ItemStack(Material.BEACON, 1);
-                ItemMeta lobbyMeta = lobby.getItemMeta();
+            ItemStack cb = new ItemStack(Material.SMOOTH_QUARTZ, 1);
+            ItemMeta cbMeta = cb.getItemMeta();
 
-                ItemStack ffa = new ItemStack(Material.IRON_SWORD, 1);
-                ItemMeta ffaMeta = ffa.getItemMeta();
+            ItemStack lobby = new ItemStack(Material.BEACON, 1);
+            ItemMeta lobbyMeta = lobby.getItemMeta();
 
-                ItemStack close = new ItemStack(Material.BARRIER, 1);
-                ItemMeta closeMeta = close.getItemMeta();
+            ItemStack ffa = new ItemStack(Material.IRON_SWORD, 1);
+            ItemMeta ffaMeta = ffa.getItemMeta();
 
-                ItemStack redGlassPane = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
-                ItemMeta redGlassPaneMeta = redGlassPane.getItemMeta();
+            ItemStack close = new ItemStack(Material.BARRIER, 1);
+            ItemMeta closeMeta = close.getItemMeta();
 
-                farmweltMeta.displayName(Component.text("§2Farmwelt"));
+            ItemStack redGlassPane = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
+            ItemMeta redGlassPaneMeta = redGlassPane.getItemMeta();
 
-                farmwelt.setItemMeta(farmweltMeta);
+            farmweltMeta.displayName(Component.text("§2Farmwelt"));
 
-                netherMeta.displayName(Component.text("§cNether"));
+            farmwelt.setItemMeta(farmweltMeta);
 
-                nether.setItemMeta(netherMeta);
+            netherMeta.displayName(Component.text("§cNether"));
 
-                endMeta.displayName(Component.text("§eEnd"));
+            nether.setItemMeta(netherMeta);
 
-                end.setItemMeta(endMeta);
+            endMeta.displayName(Component.text("§eEnd"));
 
-                cbMeta.displayName(Component.text("§3CityBuild"));
+            end.setItemMeta(endMeta);
 
-                cb.setItemMeta(cbMeta);
+            cbMeta.displayName(Component.text("§3CityBuild"));
 
-                lobbyMeta.displayName(Component.text("§bLobby"));
+            cb.setItemMeta(cbMeta);
 
-                lobby.setItemMeta(lobbyMeta);
+            lobbyMeta.displayName(Component.text("§bLobby"));
 
-                ffaMeta.displayName(Component.text("§4FFA"));
+            lobby.setItemMeta(lobbyMeta);
 
-                ffa.setItemMeta(ffaMeta);
+            ffaMeta.displayName(Component.text("§4FFA"));
 
-                closeMeta.displayName(Component.text("§cSchließen"));
+            ffa.setItemMeta(ffaMeta);
 
-                close.setItemMeta(closeMeta);
+            closeMeta.displayName(Component.text("§cSchließen"));
 
-                redGlassPaneMeta.displayName(Component.text(""));
+            close.setItemMeta(closeMeta);
 
-                redGlassPane.setItemMeta(redGlassPaneMeta);
+            redGlassPaneMeta.displayName(Component.text(""));
 
-                inventory.setItem(11, farmwelt);
-                inventory.setItem(20, nether);
-                inventory.setItem(29, end);
-                inventory.setItem(15, cb);
-                inventory.setItem(22, lobby);
-                inventory.setItem(24, ffa);
-                inventory.setItem(53, close);
+            redGlassPane.setItemMeta(redGlassPaneMeta);
 
-                for (int i = 0; i <= 53; i++) {
-                    if (inventory.getItem(i) == null) inventory.setItem(i, redGlassPane);
-                }
+            inventory.setItem(11, farmwelt);
+            inventory.setItem(20, nether);
+            inventory.setItem(29, end);
+            inventory.setItem(15, cb);
+            inventory.setItem(22, lobby);
+            inventory.setItem(24, ffa);
+            inventory.setItem(53, close);
 
-                player.openInventory(inventory);
+            for (int i = 0; i <= 53; i++) {
+                if (inventory.getItem(i) == null) inventory.setItem(i, redGlassPane);
             }
+
+            player.openInventory(inventory);
         }
         else {
             player.sendMessage(CCPlugin.getPrefix() + "Keine Rechte!");
