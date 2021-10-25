@@ -28,7 +28,7 @@ public class ConfigCommand implements CommandExecutor, TabCompleter {
                             sender.sendMessage(CCPlugin.getPrefix() + "Configs gespeichert!");
                         }
                         case "reload" -> {
-                            CCPlugin.getInstance().reloadConfigs();
+                            CCPlugin.getInstance().loadConfigs();
                             sender.sendMessage(CCPlugin.getPrefix() + "Configs neu geladen!");
                         }
                         default -> sender.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
@@ -53,7 +53,7 @@ public class ConfigCommand implements CommandExecutor, TabCompleter {
                             player.sendMessage(CCPlugin.getPrefix() + "Configs gespeichert!");
                         }
                         case "reload" -> {
-                            CCPlugin.getInstance().reloadConfigs();
+                            CCPlugin.getInstance().loadConfigs();
                             player.sendMessage(CCPlugin.getPrefix() + "Configs neu geladen!");
                         }
                         default -> player.sendMessage(CCPlugin.getPrefix() + "/config <save|reload>");
