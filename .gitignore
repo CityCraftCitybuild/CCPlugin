@@ -5,6 +5,20 @@
 *.ipr
 *.iws
 
+*.dat
+*.dat_old
+*.json
+*.console_history
+*.log.gz
+*.properties
+*.template
+*.txt
+*.pem
+*.db
+*.mcmeta
+*.mca
+*.lock
+
 # IntelliJ
 out/
 
