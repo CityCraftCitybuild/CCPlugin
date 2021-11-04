@@ -1,7 +1,7 @@
 package de.mariocst.cc;
 
 import de.mariocst.cc.backpack.*;
-import de.mariocst.cc.commands.Admin.ScaffoldCommand;
+import de.mariocst.cc.commands.Admin.*;
 import de.mariocst.cc.commands.Chat.*;
 import de.mariocst.cc.commands.Inventory.*;
 import de.mariocst.cc.commands.Invsee.*;
