@@ -1,6 +1,7 @@
 package de.mariocst.cc;
 
 import de.mariocst.cc.backpack.*;
+import de.mariocst.cc.commands.Admin.ScaffoldCommand;
 import de.mariocst.cc.commands.Chat.*;
 import de.mariocst.cc.commands.Inventory.*;
 import de.mariocst.cc.commands.Invsee.*;
@@ -206,6 +207,7 @@ public final class CCPlugin extends JavaPlugin {
         pluginManager.registerEvents(new NavigatorListener(), this);
         pluginManager.registerEvents(new QuitListener(), this);
         pluginManager.registerEvents(new RandListener(), this);
+        pluginManager.registerEvents(new ScaffoldListener(), this);
         pluginManager.registerEvents(new ServerListPingListener(), this);
         pluginManager.registerEvents(new WorldChangeListener(), this);
     }
@@ -219,6 +221,9 @@ public final class CCPlugin extends JavaPlugin {
     }
 
     private void register() throws NullPointerException {
+        // Admin
+        Objects.requireNonNull(this.getCommand("scaffold")).setExecutor(new ScaffoldCommand());
+
         // Chat
         Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new BroadcastCommand());
         Objects.requireNonNull(this.getCommand("chatclear")).setExecutor(new ChatClearCommand());

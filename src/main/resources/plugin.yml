@@ -199,6 +199,10 @@ commands:
   rand:
     description: Ändere den Rand deines Plots!
     permission: mario.rand
+  scaffold:
+    description: Gibt dir eine Wolle, mit der du automatisch unter dir Blöcke baust!
+    aliases: [ "scaff" ]
+    permission: mario.scaffold
 
 permissions:
   mario.*:
@@ -256,6 +260,7 @@ permissions:
       mario.nether: true
       mario.onlineplayers: true
       mario.rand: true
+      mario.scaffold: true
   mario.heal:
     description: Rechte für den /heal Command!
     default: op
@@ -454,3 +459,6 @@ permissions:
       mario.rand.ultimate:
         description: Rechte auf die Ultimate Ränder!
         default: op
+  mario.scaffold:
+    description: Rechte für den /scaffold Command!
+    default: op
